@@ -4,15 +4,68 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a collection of free SEO tools built for DreamHost. Each tool is a standalone React app in its own subfolder, deployed individually to Vercel via GitHub. The root `index.html` serves as a landing page linking to all tools.
+This is a collection of free marketing tools built for DreamHost. The root `index.html` is a parent hub linking to 7 category pages. Each category page lists its tools. Individual tools are standalone React apps in their own subfolders, deployed to Vercel via GitHub.
 
-### Projects
+### Site Structure
+
+```
+root/
+├── index.html                  ← Parent hub (Free Marketing Tools)
+├── shared/
+│   └── styles.css              ← Shared CSS for all static pages
+├── seo/
+│   └── index.html              ← SEO Tools category (9 tools)
+├── social-media/
+│   └── index.html              ← Social Media Tools category (5 tools)
+├── copywriting/
+│   └── index.html              ← Copywriting Tools category (5 tools)
+├── email-marketing/
+│   └── index.html              ← Email Marketing Tools category (5 tools)
+├── analytics/
+│   └── index.html              ← Analytics & Calculators category (6 tools)
+├── design/
+│   └── index.html              ← Design & Branding Tools category (5 tools)
+├── advertising/
+│   └── index.html              ← Advertising Tools category (5 tools)
+├── schema-markup-generator/    ← Standalone React app (own git repo)
+├── metadata-preview-tool/      ← Standalone React app (own git repo)
+└── core-web-vitals-checker/    ← Standalone React app (own git repo)
+```
+
+### Shared CSS
+
+All static HTML pages (hub + category pages) use `shared/styles.css` via relative path (`../shared/styles.css` from category pages, `./shared/styles.css` from root). This file contains the DreamHost design system tokens, layout, tile, breadcrumb, and responsive styles.
+
+### Live Tool Projects
 
 | Folder | Description | Vercel URL |
 |---|---|---|
 | `schema-markup-generator` | JSON-LD structured data generator | https://schema-generator-ochre.vercel.app/ |
-| `metadata-preview-tool` | Google/social metadata preview | TBD |
+| `metadata-preview-tool` | Google/social metadata preview | https://metadata-preview-tool.vercel.app/ |
 | `core-web-vitals-checker` | LCP, INP, CLS performance checker | TBD |
+
+### Category Tool Lists
+
+**SEO Tools** (9 tools — 2 live):
+Schema Markup Generator, Metadata Preview Tool, Core Web Vitals Checker, Robots.txt Generator, AI Crawler Control Center, Redirect Map Builder, AI Search Snippet Previewer, Content Readability & Citability Scorer, XML Sitemap Generator
+
+**Social Media Tools** (5 tools):
+Social Media Post Previewer, Hashtag Generator, Social Media Bio Generator, Social Image Resizer, Open Graph Debugger
+
+**Copywriting Tools** (5 tools):
+Headline Analyzer, Call-to-Action Generator, Product Description Builder, Word & Character Counter, Before/After Copy Comparer
+
+**Email Marketing Tools** (5 tools):
+Email Subject Line Tester, Email Signature Generator, Spam Word Checker, Plain Text Email Formatter, Email Preview Renderer
+
+**Analytics & Calculators** (6 tools):
+Marketing ROI Calculator, A/B Test Sample Size Calculator, Conversion Rate Calculator, Ad Spend Budget Planner, Website Speed Impact Calculator, UTM Link Builder
+
+**Design & Branding Tools** (5 tools):
+Color Palette Generator, Contrast Checker (WCAG), Favicon Generator, Font Pairing Tool, Brand Color Extractor
+
+**Advertising Tools** (5 tools):
+Google Ads Preview Tool, ROAS Calculator, Facebook Ad Copy Generator, Ad Size Reference Guide, Landing Page Checklist Auditor
 
 ## Stack
 
