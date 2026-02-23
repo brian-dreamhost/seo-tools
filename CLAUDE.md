@@ -28,7 +28,7 @@ root/
 ├── advertising/
 │   └── index.html              ← Advertising Tools category (5 tools)
 ├── schema-markup-generator/    ← Standalone React app (own git repo)
-├── metadata-preview-tool/      ← Standalone React app (own git repo)
+├── metadata-preview-tool/      ← SERP Preview Tool — Standalone React app (own git repo)
 └── core-web-vitals-checker/    ← Standalone React app (own git repo)
 ```
 
@@ -41,13 +41,13 @@ All static HTML pages (hub + category pages) use `shared/styles.css` via relativ
 | Folder | Description | Vercel URL |
 |---|---|---|
 | `schema-markup-generator` | JSON-LD structured data generator | https://schema-generator-ochre.vercel.app/ |
-| `metadata-preview-tool` | Google/social metadata preview | https://metadata-preview-tool.vercel.app/ |
+| `metadata-preview-tool` | SERP Preview Tool | https://metadata-preview-tool.vercel.app/ |
 | `core-web-vitals-checker` | LCP, INP, CLS performance checker | TBD |
 
 ### Category Tool Lists
 
 **SEO Tools** (9 tools — 2 live):
-Schema Markup Generator, Metadata Preview Tool, Core Web Vitals Checker, Robots.txt Generator, AI Crawler Control Center, Redirect Map Builder, AI Search Snippet Previewer, Content Readability & Citability Scorer, XML Sitemap Generator
+Schema Markup Generator, SERP Preview Tool, Core Web Vitals Checker, Robots.txt Generator, AI Crawler Control Center, Redirect Map Builder, AI Search Snippet Previewer, Content Readability & Citability Scorer, XML Sitemap Generator
 
 **Social Media Tools** (5 tools):
 Social Media Post Previewer, Hashtag Generator, Social Media Bio Generator, Social Image Resizer, Open Graph Debugger
@@ -188,3 +188,135 @@ Also include the Gilroy `@font-face` declarations and CSS custom properties in `
 ### Icons
 
 Use inline SVGs from Heroicons (outline style, 24x24, stroke-width 1.5). Color with `text-cloudy` default, `text-azure` on hover via group-hover. Do not use icon font libraries.
+
+## Usefulness Agent
+
+Run this evaluation **before building any tool** — during planning, before any code is written. The purpose is to ensure every tool we ship is genuinely valuable to a small business marketer, not just a checkbox on a feature list. The agent should deeply empathize with the target user, challenge assumptions, and modify the plan if needed.
+
+### Target User
+
+A small business owner or marketer who:
+- Is not a developer or SEO expert
+- Has limited time and budget
+- Needs tools that produce immediate, actionable results
+- Will only bookmark and return to tools that save real time
+- Judges tools by "did this actually help me?" not "is this technically impressive?"
+
+### Evaluation Criteria
+
+Score each criterion as **High / Medium / Low**. A tool that scores **Low on any High-weight criterion** must be redesigned or cut. A tool that scores **Low on 2+ Medium-weight criteria** should be reconsidered.
+
+| Criterion | Question | Weight |
+|-----------|----------|--------|
+| **Return frequency** | Will users come back more than once? Or is this a one-and-done tool? | High |
+| **Time saved** | Does this save >2 minutes vs. the current best free alternative? | High |
+| **Differentiation** | Is the best free alternative meaningfully worse than what we're building? | High |
+| **Accuracy** | Can we deliver results that are reliably correct with a client-side app? | High |
+| **Actionability** | Does every output come with a clear "do this next" step? | Medium |
+| **Audience fit** | Does a non-expert small business marketer actually need this? | Medium |
+| **Standalone viability** | Is this a real tool or just a feature that belongs inside another tool? | Medium |
+| **Premise validity** | Is the underlying concept still relevant and accurate in 2026? | Medium |
+| **Build complexity** | Can we build this well within our stack (client-side React)? | Low |
+| **SEO value** | Will this page rank for valuable search terms? | Low |
+
+### Usefulness Traps to Check For
+
+The agent must explicitly check for and flag these patterns:
+
+1. **The Scoreless Score** — Tool produces a number (0-100) with no explanation, benchmarks, or actionable next step. *Rule: Every score needs plain-language meaning, a benchmark, and one specific improvement action.*
+
+2. **The Generic Generator** — AI-powered tool that produces output indistinguishable from asking ChatGPT. *Rule: Generators must use structured inputs that create meaningfully different outputs, produce formatted artifacts a chatbot can't (JSON-LD, HTML email signatures), or provide a workflow/framework — not just raw text.*
+
+3. **The One-Visit Tool** — Solves a problem the user has exactly once, then never returns. *Rule: Not disqualifying, but one-visit tools must complete in <30 seconds. Consider embedding as a feature inside a higher-traffic tool instead.*
+
+4. **The Outdated Premise** — Built on advice or assumptions that are no longer accurate. *Rule: Before building, verify the underlying premise is still valid. "Would an expert recommend this approach in 2026?"*
+
+5. **The Context-Free Calculator** — Does math the user could do on their phone, without interpretation. *Rule: Every calculator must include benchmarks, projections, or scenario comparisons. The value is in the "so what?" not the arithmetic.*
+
+6. **The Impossible Accuracy Problem** — Promises to preview/simulate something that varies too much to be reliable. *Rule: If accuracy can't be reasonable, scope to what works (3-4 major platforms with disclaimers) or don't build it.*
+
+7. **The Feature Masquerading as a Tool** — Can be fully expressed as a single input + single output. *Rule: If it fits in one text field and one result, it's probably a feature. Combine with a related tool that drives repeat visits.*
+
+8. **The "Works for Experts" Tool** — Only useful if you already understand the domain well enough to not need it. *Rule: Every input must have sensible defaults and plain-language explanations. If a user doesn't know what "minimum detectable effect" means, the tool must explain it.*
+
+### Agent Workflow
+
+1. **Read the plan** — Understand what the tool does, who it's for, and how it works
+2. **Identify the user's job-to-be-done** — What specific task is the user trying to accomplish? What's the pain point?
+3. **Map the competitive landscape** — What free alternatives exist today? How good are they? What's our angle?
+4. **Score against criteria** — Evaluate each of the 10 criteria above
+5. **Check for traps** — Explicitly test against all 8 trap patterns
+6. **Propose modifications** — If the tool scores poorly, suggest specific changes:
+   - Rebrand/reframe the concept (e.g., "Spam Word Checker" → "Email Deliverability Checklist")
+   - Add a differentiating feature (e.g., benchmarks, competitive analysis, multi-platform preview)
+   - Merge with another tool (e.g., "Website Speed Impact Calculator" → tab inside Core Web Vitals Checker)
+   - Scope down to what can be done well (e.g., "Email Preview Renderer" → just Gmail + Outlook + Apple Mail with disclaimers)
+   - Kill it if nothing saves it (e.g., "Word & Character Counter" as a standalone tool)
+7. **Issue a verdict** — One of:
+   - **BUILD** — Tool is genuinely useful as planned
+   - **BUILD WITH MODIFICATIONS** — Useful concept, but needs the specified changes
+   - **RECONSIDER** — The premise needs significant rethinking before proceeding
+   - **DON'T BUILD** — Better to invest the time elsewhere; explain why
+
+### Output Format
+
+```
+## Usefulness Evaluation: [Tool Name]
+
+### User Story
+As a [specific user type], I need to [specific task] because [specific pain point].
+
+### Competitive Landscape
+- [Existing alternative 1]: [quality assessment]
+- [Existing alternative 2]: [quality assessment]
+- Our angle: [what makes ours worth using]
+
+### Criteria Scores
+| Criterion | Score | Rationale |
+|-----------|-------|-----------|
+| Return frequency | High/Med/Low | [why] |
+| Time saved | High/Med/Low | [why] |
+| ... | ... | ... |
+
+### Trap Check
+- [ ] Scoreless Score: [pass/fail + detail]
+- [ ] Generic Generator: [pass/fail + detail]
+- [ ] One-Visit Tool: [pass/fail + detail]
+- [ ] Outdated Premise: [pass/fail + detail]
+- [ ] Context-Free Calculator: [pass/fail + detail]
+- [ ] Impossible Accuracy: [pass/fail + detail]
+- [ ] Feature Not Tool: [pass/fail + detail]
+- [ ] Works for Experts: [pass/fail + detail]
+
+### Modifications Required
+[Specific, actionable changes — or "None" if BUILD]
+
+### Verdict: [BUILD / BUILD WITH MODIFICATIONS / RECONSIDER / DON'T BUILD]
+[1-2 sentence summary of why]
+```
+
+## UX Quality Control Checklist
+
+Run this checklist after every tool build. A dedicated UX QC agent should read every component file, check against each item, report issues with `file:line` references, and fix any issues found.
+
+- **Responsive**: test at 320px, 375px, 768px, 1024px, 1440px widths. Specifically check:
+  - No horizontal overflow or scrollbars at any breakpoint
+  - Text does not overflow containers or get clipped
+  - Flex/grid layouts stack properly on mobile (flex-col on small, flex-row on large)
+  - Preview cards and embedded content scale down without breaking
+  - Form inputs are full-width on mobile, not truncated
+  - Padding/margins reduce appropriately on small screens (e.g., `p-4` not `p-8` on mobile)
+  - Tab bars remain usable at 320px (scrollable or wrapped, not overlapping)
+  - Images maintain aspect ratio and don't overflow their containers
+  - Touch targets are at least 44x44px on mobile
+  - Font sizes are readable on mobile (minimum 14px for body text)
+- **Empty states**: all forms empty, partial data, single field filled
+- **Error states**: invalid input, oversized files, broken image URLs
+- **Keyboard nav**: all interactive elements reachable via Tab, Enter/Space to activate
+- **Focus visibility**: focus rings visible on all buttons, inputs, tabs
+- **Color contrast**: text meets WCAG AA against its background
+- **Design system compliance**: all colors, spacing, radii match DreamHost tokens
+- **Interactive feedback**: hover, focus, active, disabled states all present
+- **Loading/transition states**: smooth animations, no layout shift
+- **Typography hierarchy**: headings, body, muted text use correct tokens
+- **Cross-browser**: no Tailwind features that break in Safari/Firefox
