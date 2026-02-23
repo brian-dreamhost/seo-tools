@@ -248,19 +248,114 @@ The agent must explicitly check for and flag these patterns:
 
 8. **The "Works for Experts" Tool** — Only useful if you already understand the domain well enough to not need it. *Rule: Every input must have sensible defaults and plain-language explanations. If a user doesn't know what "minimum detectable effect" means, the tool must explain it.*
 
-### Agent Workflow
+### Integration Philosophy
+
+Our default stance is **self-contained, client-side tools with zero backend dependencies**. This keeps tools free forever, fast, and private (no user data leaves the browser).
+
+- **Preferred**: Pure client-side logic, browser APIs (Canvas, Clipboard, File API, Web Workers, etc.)
+- **Acceptable**: Free, public APIs with no auth required (e.g., PageSpeed Insights API, public DNS lookups, open data sets)
+- **Ask the user first**: Free APIs that require an API key (e.g., Google Search Console API, free-tier services) — present as an optional enhancement, not a requirement
+- **Avoid**: Paid APIs, rate-limited services that would break under real usage, any dependency that could disappear or start charging
+- **Never**: APIs that require users to create accounts or share credentials with our tool
+
+When the Competitive Research Agent identifies a feature gap that requires an API, it must classify the integration using the tiers above and present the trade-off to the user via questionnaire before including it in scope.
+
+### Competitive Research Sub-Agent
+
+The Usefulness Agent may deploy a **Competitive Research Agent** at its discretion. This is a strictly read-only research agent — it does not write code or modify files. It can also be invoked directly by the user for retroactive audits of tools already built.
+
+#### When to Deploy
+
+The Usefulness Agent should deploy this sub-agent when:
+- A new tool is being planned and the competitive landscape is unclear
+- The Usefulness Agent scores "Differentiation" as uncertain and needs real data
+- The user explicitly requests a competitive audit of an existing or planned tool
+- A tool category is being prioritized and we need to know which tool to build first
+
+#### Sub-Agent Workflow
+
+1. **Identify search queries** — Determine the 3-5 queries a target user would search to find this type of tool (e.g., "free SERP preview tool", "google search result previewer", "meta tag checker free")
+2. **Audit top-ranking competitors** — For each query, examine the top 5-10 results via web search and fetch. For each competitor:
+   - What features does it offer?
+   - Is it truly free, freemium, or bait-and-switch (free to use, pay to export)?
+   - What's the UX quality? (Fast? Clean? Ad-heavy? Mobile-friendly?)
+   - What are users complaining about? (Check for obvious UX pain points, missing features, outdated data)
+3. **Build a feature matrix** — Create a table: rows = features, columns = competitors + our planned tool. Mark each as present/absent/partial.
+4. **Identify feature gaps** — What do the top 2-3 competitors offer that our plan doesn't? Classify each gap:
+   - **Must-have gap**: Competitors all have it; users expect it. We need it or we look incomplete.
+   - **Differentiator opportunity**: No competitor does this well (or at all). This is our angle.
+   - **Nice-to-have**: Some competitors have it, but it's not core to the user's job-to-be-done.
+   - **Skip**: Competitor feature that adds bloat, requires paid APIs, or doesn't fit our audience.
+5. **Assess integration requirements** — For each must-have or differentiator feature:
+   - Can it be built client-side? If yes, recommend it.
+   - Does it require a free public API? If yes, identify the specific API, confirm it's free/no-auth, and recommend it.
+   - Does it require a paid or authenticated API? If yes, flag it and classify per the Integration Philosophy tiers above. Present to the user as an optional enhancement with clear trade-offs.
+6. **Produce recommendations** — Specific, actionable feature additions or modifications to the plan, ranked by impact.
+
+#### Sub-Agent Output Format
+
+```
+## Competitive Research: [Tool Name]
+
+### Search Queries Analyzed
+- "[query 1]" — [X results examined]
+- "[query 2]" — [X results examined]
+
+### Top Competitors
+| Competitor | URL | Free? | Key Strengths | Key Weaknesses |
+|------------|-----|-------|---------------|----------------|
+| [Name] | [URL] | Yes/Freemium/No | [strengths] | [weaknesses] |
+
+### Feature Matrix
+| Feature | Competitor A | Competitor B | Competitor C | Our Plan |
+|---------|-------------|-------------|-------------|----------|
+| [Feature 1] | Yes | Yes | No | Yes |
+| [Feature 2] | Yes | No | Yes | Missing |
+
+### Feature Gap Analysis
+**Must-have gaps** (need these to be competitive):
+- [Feature]: [why it's expected, how to build it, client-side feasible: yes/no]
+
+**Differentiator opportunities** (our angle to stand out):
+- [Feature]: [why no one does this well, how we'd do it better]
+
+**Nice-to-have** (consider for v2):
+- [Feature]: [context]
+
+**Skip** (not worth it):
+- [Feature]: [why — paid API, bloat, wrong audience, etc.]
+
+### Integration Requirements
+| Feature | Implementation | API Required? | Tier | Recommendation |
+|---------|---------------|---------------|------|----------------|
+| [Feature] | [approach] | None / Free public / Free w/ key / Paid | Preferred/Acceptable/Ask user/Avoid | [Include/Optional/Skip] |
+
+### Summary Recommendations
+[Ranked list of specific changes to the plan, with rationale]
+```
+
+#### Retroactive Mode
+
+When invoked by the user on an existing live tool, the sub-agent follows the same workflow but adds:
+- Compare our live tool's current feature set against the competitor matrix
+- Flag features we're missing that competitors have added since our launch
+- Recommend specific enhancements, prioritized by user impact
+- Note any competitors that have launched since our tool went live
+
+### Usefulness Agent Workflow
 
 1. **Read the plan** — Understand what the tool does, who it's for, and how it works
 2. **Identify the user's job-to-be-done** — What specific task is the user trying to accomplish? What's the pain point?
-3. **Map the competitive landscape** — What free alternatives exist today? How good are they? What's our angle?
-4. **Score against criteria** — Evaluate each of the 10 criteria above
+3. **Deploy Competitive Research Agent** (at discretion) — If the competitive landscape is unclear, differentiation is uncertain, or the tool is high-investment, deploy the sub-agent to gather real data before scoring
+4. **Score against criteria** — Evaluate each of the 10 criteria above, informed by competitive research if available
 5. **Check for traps** — Explicitly test against all 8 trap patterns
 6. **Propose modifications** — If the tool scores poorly, suggest specific changes:
    - Rebrand/reframe the concept (e.g., "Spam Word Checker" → "Email Deliverability Checklist")
-   - Add a differentiating feature (e.g., benchmarks, competitive analysis, multi-platform preview)
+   - Add a differentiating feature informed by competitive gaps
    - Merge with another tool (e.g., "Website Speed Impact Calculator" → tab inside Core Web Vitals Checker)
    - Scope down to what can be done well (e.g., "Email Preview Renderer" → just Gmail + Outlook + Apple Mail with disclaimers)
    - Kill it if nothing saves it (e.g., "Word & Character Counter" as a standalone tool)
+   - For features requiring APIs, present user questionnaire with trade-offs per Integration Philosophy
 7. **Issue a verdict** — One of:
    - **BUILD** — Tool is genuinely useful as planned
    - **BUILD WITH MODIFICATIONS** — Useful concept, but needs the specified changes
@@ -276,9 +371,12 @@ The agent must explicitly check for and flag these patterns:
 As a [specific user type], I need to [specific task] because [specific pain point].
 
 ### Competitive Landscape
+[Summarized from Competitive Research Agent if deployed, or from general knowledge]
 - [Existing alternative 1]: [quality assessment]
 - [Existing alternative 2]: [quality assessment]
 - Our angle: [what makes ours worth using]
+- Key feature gaps to close: [list]
+- Key differentiator opportunities: [list]
 
 ### Criteria Scores
 | Criterion | Score | Rationale |
@@ -299,6 +397,14 @@ As a [specific user type], I need to [specific task] because [specific pain poin
 
 ### Modifications Required
 [Specific, actionable changes — or "None" if BUILD]
+
+### Integration Decisions (if applicable)
+[For any feature that requires an API or external dependency, present as a user question]
+| Feature | What It Adds | Requires | Tier | Trade-off |
+|---------|-------------|----------|------|-----------|
+| [Feature] | [user benefit] | [API/service name] | Preferred/Acceptable/Ask user | [what we gain vs. what we risk] |
+
+Recommendation: [Include / Make optional / Skip] — [rationale]
 
 ### Verdict: [BUILD / BUILD WITH MODIFICATIONS / RECONSIDER / DON'T BUILD]
 [1-2 sentence summary of why]
