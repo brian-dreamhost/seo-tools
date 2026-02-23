@@ -174,6 +174,15 @@ Also include the Gilroy `@font-face` declarations and CSS custom properties in `
 **Links:**
 - `text-azure hover:text-white transition-colors`
 
+**Breadcrumbs (required on every tool app):**
+- Every standalone tool must include a breadcrumb nav at the top of the page, above the header
+- Pattern: `Free Tools / [Category Name] / [Tool Name]`
+- "Free Tools" and category name are azure links; tool name is cloudy (current page)
+- Links use full Vercel URLs since tools are on separate domains:
+  - Hub: `https://seo-tools-tau.vercel.app/`
+  - Categories: `https://seo-tools-tau.vercel.app/seo/`, `https://seo-tools-tau.vercel.app/social-media/`, etc.
+- Tailwind classes: `<nav className="mb-8 text-sm text-galactic">` with `text-azure hover:text-white transition-colors` links and `mx-2 text-metal` separators
+
 **Footer:**
 - `border-t border-metal/30`, muted `galactic` text, azure links
 
