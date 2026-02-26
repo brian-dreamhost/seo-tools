@@ -16,7 +16,7 @@ root/
 ├── seo/
 │   └── index.html              ← SEO Tools category (9 tools)
 ├── social-media/
-│   └── index.html              ← Social Media Tools category (5 tools)
+│   └── index.html              ← Social Media Tools category (9 tools)
 ├── copywriting/
 │   └── index.html              ← Copywriting Tools category (9 tools)
 ├── email-marketing/
@@ -46,6 +46,20 @@ All static HTML pages (hub + category pages) use `shared/styles.css` via relativ
 | `metadata-preview-tool` | SERP Preview Tool | https://metadata-preview-tool.vercel.app/ |
 | `core-web-vitals-checker` | LCP, INP, CLS performance checker | TBD |
 
+**Social Media Tools:**
+
+| Folder | Description | Vercel URL |
+|---|---|---|
+| `social-media-post-previewer` | Post preview across Facebook, X, LinkedIn, Instagram | https://social-media-post-previewer-blond.vercel.app/ |
+| `hashtag-generator` | Hashtag suggestions by topic, niche, platform | https://hashtag-generator-self.vercel.app/ |
+| `social-media-bio-generator` | Platform-optimized bios for all major networks | https://social-media-bio-generator.vercel.app/ |
+| `social-image-resizer` | Canvas-based image resizer for all platform dimensions | https://social-image-resizer-nu.vercel.app/ |
+| `open-graph-debugger` | OG tag validator with social share previews | https://open-graph-debugger.vercel.app/ |
+| `platform-character-counter` | Live char count for 8 platforms with truncation previews | https://platform-character-counter.vercel.app/ |
+| `engagement-rate-calculator` | ER calculator with benchmarks and improvement tips | https://engagement-rate-calculator.vercel.app/ |
+| `best-time-to-post` | Weekly heatmap by platform and industry | https://best-time-to-post.vercel.app/ |
+| `social-media-caption-generator` | Platform-optimized captions with tone + hashtag options | https://social-media-caption-generator.vercel.app/ |
+
 **Copywriting Tools:**
 
 | Folder | Description | Vercel URL |
@@ -65,8 +79,8 @@ All static HTML pages (hub + category pages) use `shared/styles.css` via relativ
 **SEO Tools** (9 tools — 2 live):
 Schema Markup Generator, SERP Preview Tool, Core Web Vitals Checker, Robots.txt Generator, AI Crawler Control Center, Redirect Map Builder, AI Search Snippet Previewer, Content Readability & Citability Scorer, XML Sitemap Generator
 
-**Social Media Tools** (5 tools):
-Social Media Post Previewer, Hashtag Generator, Social Media Bio Generator, Social Image Resizer, Open Graph Debugger
+**Social Media Tools** (9 tools — all live):
+Social Media Post Previewer, Hashtag Generator, Social Media Bio Generator, Social Image Resizer, Open Graph Debugger, Platform Character Counter, Engagement Rate Calculator, Best Time to Post, Social Media Caption Generator
 
 **Copywriting Tools** (9 tools — all live):
 Copy Readability Optimizer, Tone & Voice Analyzer, Headline Analyzer, Call-to-Action Generator, Product Description Builder, Word & Character Counter, Before/After Copy Comparer, Value Proposition Generator, Story Framework Generator
