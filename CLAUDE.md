@@ -18,7 +18,7 @@ root/
 ├── social-media/
 │   └── index.html              ← Social Media Tools category (5 tools)
 ├── copywriting/
-│   └── index.html              ← Copywriting Tools category (5 tools)
+│   └── index.html              ← Copywriting Tools category (9 tools)
 ├── email-marketing/
 │   └── index.html              ← Email Marketing Tools category (5 tools)
 ├── analytics/
@@ -38,11 +38,27 @@ All static HTML pages (hub + category pages) use `shared/styles.css` via relativ
 
 ### Live Tool Projects
 
+**SEO Tools:**
+
 | Folder | Description | Vercel URL |
 |---|---|---|
 | `schema-markup-generator` | JSON-LD structured data generator | https://schema-generator-ochre.vercel.app/ |
 | `metadata-preview-tool` | SERP Preview Tool | https://metadata-preview-tool.vercel.app/ |
 | `core-web-vitals-checker` | LCP, INP, CLS performance checker | TBD |
+
+**Copywriting Tools:**
+
+| Folder | Description | Vercel URL |
+|---|---|---|
+| `copy-readability-optimizer` | Readability + side-by-side copy comparison | https://copy-readability-optimizer.vercel.app/ |
+| `tone-voice-analyzer` | Brand voice profile + consistency checker | https://tone-voice-analyzer.vercel.app/ |
+| `headline-analyzer` | Headline scoring on balance, length, sentiment | https://headline-analyzer-gold.vercel.app/ |
+| `cta-generator` | Psychology-backed CTA variations | https://cta-generator-nine.vercel.app/ |
+| `product-description-builder` | AIDA/PAS/FAB product descriptions | https://product-description-builder.vercel.app/ |
+| `word-character-counter` | Real-time counts with platform limits | https://word-character-counter-tau.vercel.app/ |
+| `before-after-copy-comparer` | Side-by-side diff with readability scores | https://before-after-copy-comparer.vercel.app/ |
+| `value-proposition-generator` | 5-framework value prop generator with clarity scores | https://value-proposition-generator.vercel.app/ |
+| `story-framework-generator` | 5 narrative frameworks with social adaptation | https://story-framework-generator.vercel.app/ |
 
 ### Category Tool Lists
 
@@ -52,8 +68,8 @@ Schema Markup Generator, SERP Preview Tool, Core Web Vitals Checker, Robots.txt 
 **Social Media Tools** (5 tools):
 Social Media Post Previewer, Hashtag Generator, Social Media Bio Generator, Social Image Resizer, Open Graph Debugger
 
-**Copywriting Tools** (5 tools):
-Headline Analyzer, Call-to-Action Generator, Product Description Builder, Word & Character Counter, Before/After Copy Comparer
+**Copywriting Tools** (9 tools — all live):
+Copy Readability Optimizer, Tone & Voice Analyzer, Headline Analyzer, Call-to-Action Generator, Product Description Builder, Word & Character Counter, Before/After Copy Comparer, Value Proposition Generator, Story Framework Generator
 
 **Email Marketing Tools** (5 tools):
 Email Subject Line Tester, Email Signature Generator, Spam Word Checker, Plain Text Email Formatter, Email Preview Renderer
@@ -197,6 +213,47 @@ Also include the Gilroy `@font-face` declarations and CSS custom properties in `
 ### Icons
 
 Use inline SVGs from Heroicons (outline style, 24x24, stroke-width 1.5). Color with `text-cloudy` default, `text-azure` on hover via group-hover. Do not use icon font libraries.
+
+## Parallel Agent Strategy
+
+**Always use parallel agents.** This project involves many independent tools in isolated folders. Running agents in parallel cuts wall-clock time by 3–4x. Default to parallel execution whenever tasks don't share files.
+
+### When to parallelize
+
+- **Building tools**: Spawn one build agent per tool. Each owns its own folder — no file conflicts possible. Run 3–4 simultaneously.
+- **Auditing**: After deployment, run audit agents on multiple tools at the same time.
+- **Fixing**: Run fix agents on multiple tools simultaneously (each agent owns its folder).
+- **Research + build**: A Plan/Explore agent can research while a build agent works on an already-planned tool.
+
+### How to launch parallel agents
+
+Send a single message with multiple `Task` tool calls. All launch simultaneously:
+
+```
+Task(subagent_type="general-purpose", prompt="Build X in folder x/...")
+Task(subagent_type="general-purpose", prompt="Build Y in folder y/...")
+Task(subagent_type="general-purpose", prompt="Build Z in folder z/...")
+```
+
+Use `run_in_background=true` for longer tasks when you want to continue coordinating without blocking. You'll be notified when each completes.
+
+### Agent handoff pattern
+
+1. **Orchestrator** (main Claude): plans, coordinates, merges results, handles Vercel URLs, commits to shared files (hub/category pages)
+2. **Build agents**: each builds one tool end-to-end (scaffold → components → build → git push)
+3. **Audit agents**: run web-design-guidelines review on a deployed URL
+4. **Fix agents**: apply all audit findings to a specific tool folder
+
+Give each agent complete, self-contained instructions — they start fresh with no prior context.
+
+### Constraints
+
+- Agents cannot share state or communicate mid-task
+- Never assign two agents to the same file at the same time
+- Vercel import still requires a manual step from the user
+- The main Claude coordinates final commits to shared files (index.html, CLAUDE.md, etc.)
+
+---
 
 ## Usefulness Agent
 
