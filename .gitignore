@@ -3,4 +3,10 @@
 schema-markup-generator/
 metadata-preview-tool/
 core-web-vitals-checker/
+robots-txt-generator/
+ai-crawler-control-center/
+xml-sitemap-generator/
+redirect-map-builder/
+content-readability-citability-scorer/
+ai-search-snippet-previewer/
 schema-markup-generator-spec (1).md
