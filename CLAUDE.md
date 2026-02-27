@@ -20,7 +20,7 @@ root/
 ├── copywriting/
 │   └── index.html              ← Copywriting Tools category (9 tools)
 ├── email-marketing/
-│   └── index.html              ← Email Marketing Tools category (5 tools)
+│   └── index.html              ← Email Marketing Tools category (9 tools)
 ├── analytics/
 │   └── index.html              ← Analytics & Calculators category (6 tools)
 ├── design/
@@ -74,6 +74,20 @@ All static HTML pages (hub + category pages) use `shared/styles.css` via relativ
 | `value-proposition-generator` | 5-framework value prop generator with clarity scores | https://value-proposition-generator.vercel.app/ |
 | `story-framework-generator` | 5 narrative frameworks with social adaptation | https://story-framework-generator.vercel.app/ |
 
+**Email Marketing Tools:**
+
+| Folder | Description | Vercel URL |
+|---|---|---|
+| `email-subject-line-tester` | Subject line scoring with A/B comparison | https://email-subject-line-tester.vercel.app/ |
+| `email-signature-generator` | HTML email signature builder with 4 templates | https://email-signature-generator.vercel.app/ |
+| `email-deliverability-checker` | Spam trigger, link, image, compliance scanner | https://email-deliverability-checker.vercel.app/ |
+| `plain-text-email-formatter` | HTML to plain text email converter | https://plain-text-email-formatter.vercel.app/ |
+| `email-preview-renderer` | Gmail, Outlook, Apple Mail render preview | https://email-preview-renderer.vercel.app/ |
+| `email-preheader-preview` | Subject + preheader preview across 7 clients | https://email-preheader-preview.vercel.app/ |
+| `email-cta-button-generator` | Bulletproof HTML buttons with Outlook VML | https://email-cta-button-generator.vercel.app/ |
+| `email-metrics-calculator` | Email metrics benchmarked against 20 industries | https://email-metrics-calculator.vercel.app/ |
+| `email-list-growth-calculator` | List growth projections with scenarios | https://email-list-growth-calculator.vercel.app/ |
+
 ### Category Tool Lists
 
 **SEO Tools** (9 tools — 2 live):
@@ -85,8 +99,8 @@ Social Media Post Previewer, Hashtag Generator, Social Media Bio Generator, Soci
 **Copywriting Tools** (9 tools — all live):
 Copy Readability Optimizer, Tone & Voice Analyzer, Headline Analyzer, Call-to-Action Generator, Product Description Builder, Word & Character Counter, Before/After Copy Comparer, Value Proposition Generator, Story Framework Generator
 
-**Email Marketing Tools** (5 tools):
-Email Subject Line Tester, Email Signature Generator, Spam Word Checker, Plain Text Email Formatter, Email Preview Renderer
+**Email Marketing Tools** (9 tools — all live):
+Email Subject Line Tester, Email Signature Generator, Email Deliverability Checker, Plain Text Email Formatter, Email Preview Renderer, Email Preheader Preview, Email CTA Button Generator, Email Metrics Calculator, Email List Growth Calculator
 
 **Analytics & Calculators** (6 tools):
 Marketing ROI Calculator, A/B Test Sample Size Calculator, Conversion Rate Calculator, Ad Spend Budget Planner, Website Speed Impact Calculator, UTM Link Builder
