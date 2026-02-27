@@ -79,8 +79,8 @@ All static HTML pages (hub + category pages) use `shared/styles.css` via relativ
 | Folder | Description | Vercel URL |
 |---|---|---|
 | `email-subject-line-tester` | Subject line scoring with A/B comparison | https://email-subject-line-tester.vercel.app/ |
-| `email-signature-generator` | HTML email signature builder with 4 templates | https://email-signature-generator.vercel.app/ |
-| `email-deliverability-checker` | Spam trigger, link, image, compliance scanner | https://email-deliverability-checker.vercel.app/ |
+| `email-signature-generator` | HTML email signature builder with 4 templates | https://email-signature-generator-sooty.vercel.app/ |
+| `email-deliverability-checker` | Spam trigger, link, image, compliance scanner | https://email-deliverability-checker-seven.vercel.app/ |
 | `plain-text-email-formatter` | HTML to plain text email converter | https://plain-text-email-formatter.vercel.app/ |
 | `email-preview-renderer` | Gmail, Outlook, Apple Mail render preview | https://email-preview-renderer.vercel.app/ |
 | `email-preheader-preview` | Subject + preheader preview across 7 clients | https://email-preheader-preview.vercel.app/ |
