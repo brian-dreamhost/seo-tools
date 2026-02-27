@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a collection of free marketing tools built for DreamHost. The root `index.html` is a parent hub linking to 7 category pages. Each category page lists its tools. Individual tools are standalone React apps in their own subfolders, deployed to Vercel via GitHub.
+This is a collection of free marketing tools built for DreamHost. The root `index.html` is a parent hub linking to 9 category pages. Each category page lists its tools. Individual tools are standalone React apps in their own subfolders, deployed to Vercel via GitHub.
 
 ### Site Structure
 
@@ -25,6 +25,10 @@ root/
 │   └── index.html              ← Analytics & Calculators category (6 tools)
 ├── design/
 │   └── index.html              ← Design & Branding Tools category (5 tools)
+├── local-business/
+│   └── index.html              ← Local Business Tools category (9 tools)
+├── legal-compliance/
+│   └── index.html              ← Legal & Compliance Tools category (9 tools)
 ├── advertising/
 │   └── index.html              ← Advertising Tools category (5 tools)
 ├── schema-markup-generator/    ← Standalone React app (own git repo)
@@ -107,6 +111,12 @@ Marketing ROI Calculator, A/B Test Sample Size Calculator, Conversion Rate Calcu
 
 **Design & Branding Tools** (5 tools):
 Color Palette Generator, Contrast Checker (WCAG), Favicon Generator, Font Pairing Tool, Brand Color Extractor
+
+**Local Business Tools** (9 tools):
+Google Business Profile Audit, Review Response Generator, Review Request Template Builder, Local Business Schema Generator, Local SEO Keyword Generator, Local Business Description Writer, Service Area Map Planner, NAP Consistency Checker, Local Competitor Comparison
+
+**Legal & Compliance Tools** (9 tools):
+Privacy Policy Generator, Terms of Service Generator, Cookie Policy & Banner Generator, Website Accessibility Checker, GDPR/CCPA Compliance Checker, Disclaimer Generator, Return & Refund Policy Generator, Website Legal Page Audit, Color Contrast Checker
 
 **Advertising Tools** (5 tools):
 Google Ads Preview Tool, ROAS Calculator, Facebook Ad Copy Generator, Ad Size Reference Guide, Landing Page Checklist Auditor
