@@ -308,6 +308,16 @@ footer {
   margin: 0;
 }
 
+.category-header-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+.category-header-link:hover h2 {
+  color: var(--color-azure);
+}
+
 .card-row {
   display: flex;
   flex-wrap: wrap;
