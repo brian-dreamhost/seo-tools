@@ -918,11 +918,8 @@
         ? window.location.pathname + window.location.search
         : window.location.pathname + window.location.search + '#' + cat;
       history.replaceState(null, '', newUrl);
-      // Disable smooth scroll, snap to top, apply filters, re-enable
-      document.documentElement.style.scrollBehavior = 'auto';
       window.scrollTo(0, 0);
       applyFilters();
-      document.documentElement.style.scrollBehavior = '';
     }
 
     sidebarItems.forEach(function(btn) {
