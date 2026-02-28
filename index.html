@@ -913,7 +913,14 @@
       pills.forEach(function(btn) {
         btn.classList.toggle('active', btn.dataset.filter === cat);
       });
+      // Scroll-anchor: keep the tool count bar at the same viewport position
+      var anchor = toolCount;
+      var beforeY = anchor.getBoundingClientRect().top;
       applyFilters();
+      var afterY = anchor.getBoundingClientRect().top;
+      if (afterY !== beforeY) {
+        window.scrollBy(0, afterY - beforeY);
+      }
     }
 
     sidebarItems.forEach(function(btn) {
