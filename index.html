@@ -913,8 +913,15 @@
       pills.forEach(function(btn) {
         btn.classList.toggle('active', btn.dataset.filter === cat);
       });
-      window.location.hash = cat === 'all' ? '' : cat;
+      // Use replaceState to update URL without triggering browser anchor scroll
+      var newUrl = cat === 'all'
+        ? window.location.pathname + window.location.search
+        : window.location.pathname + window.location.search + '#' + cat;
+      history.replaceState(null, '', newUrl);
+      // Preserve scroll position during layout reflow
+      var scrollY = window.scrollY;
       applyFilters();
+      window.scrollTo(0, scrollY);
     }
 
     sidebarItems.forEach(function(btn) {
