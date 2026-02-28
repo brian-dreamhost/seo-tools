@@ -37,66 +37,44 @@
             <span class="sidebar-count">70</span>
           </button>
           <div class="sidebar-divider"></div>
+          <div class="sidebar-section-label">Live</div>
           <button class="sidebar-item" data-filter="seo">
-            <span class="sidebar-dot dot-live"></span>
             <span class="sidebar-label">SEO</span>
             <span class="sidebar-count">9</span>
           </button>
           <button class="sidebar-item" data-filter="social-media">
-            <span class="sidebar-dot dot-live"></span>
             <span class="sidebar-label">Social Media</span>
             <span class="sidebar-count">9</span>
           </button>
           <button class="sidebar-item" data-filter="copywriting">
-            <span class="sidebar-dot dot-live"></span>
             <span class="sidebar-label">Copywriting</span>
             <span class="sidebar-count">9</span>
           </button>
           <button class="sidebar-item" data-filter="email-marketing">
-            <span class="sidebar-dot dot-live"></span>
             <span class="sidebar-label">Email Marketing</span>
             <span class="sidebar-count">9</span>
           </button>
           <div class="sidebar-divider"></div>
+          <div class="sidebar-section-label">Coming Soon</div>
           <button class="sidebar-item" data-filter="local-business">
-            <span class="sidebar-dot dot-coming"></span>
             <span class="sidebar-label">Local Business</span>
             <span class="sidebar-count">9</span>
           </button>
           <button class="sidebar-item" data-filter="legal-compliance">
-            <span class="sidebar-dot dot-coming"></span>
             <span class="sidebar-label">Legal &amp; Compliance</span>
             <span class="sidebar-count">9</span>
           </button>
           <button class="sidebar-item" data-filter="analytics">
-            <span class="sidebar-dot dot-coming"></span>
             <span class="sidebar-label">Analytics</span>
             <span class="sidebar-count">6</span>
           </button>
           <button class="sidebar-item" data-filter="design">
-            <span class="sidebar-dot dot-coming"></span>
             <span class="sidebar-label">Design</span>
             <span class="sidebar-count">5</span>
           </button>
           <button class="sidebar-item" data-filter="advertising">
-            <span class="sidebar-dot dot-coming"></span>
             <span class="sidebar-label">Advertising</span>
             <span class="sidebar-count">5</span>
-          </button>
-          <div class="sidebar-divider"></div>
-          <div class="sidebar-section-label">Status</div>
-          <button class="sidebar-item sidebar-status-item active" data-status="all">
-            <span class="sidebar-label">All Statuses</span>
-          </button>
-          <button class="sidebar-item sidebar-status-item" data-status="live">
-            <span class="sidebar-dot dot-live"></span>
-            <span class="sidebar-label">Live</span>
-            <span class="sidebar-count" id="live-count">36</span>
-          </button>
-          <button class="sidebar-item sidebar-status-item" data-status="coming">
-            <span class="sidebar-dot dot-coming"></span>
-            <span class="sidebar-label">Coming Soon</span>
-            <span class="sidebar-count" id="coming-count">34</span>
           </button>
         </nav>
       </aside>
@@ -113,12 +91,6 @@
         <button class="hub-pill" data-filter="analytics">Analytics (6)</button>
         <button class="hub-pill" data-filter="design">Design (5)</button>
         <button class="hub-pill" data-filter="advertising">Ads (5)</button>
-      </div>
-      <!-- Mobile status pills -->
-      <div class="hub-pills hub-status-pills" id="hub-status-pills">
-        <button class="hub-pill active" data-status="all">All Statuses</button>
-        <button class="hub-pill" data-status="live">Live (36)</button>
-        <button class="hub-pill" data-status="coming">Coming Soon (34)</button>
       </div>
 
       <main class="hub-main">
@@ -883,15 +855,11 @@
     var toolCount = document.getElementById('tool-count');
     var noResults = document.getElementById('no-results');
     var sections = document.querySelectorAll('.category-section');
-    var categoryHeaders = document.querySelectorAll('.category-header');
-    var sidebarCatItems = document.querySelectorAll('.sidebar-item:not(.sidebar-status-item)');
-    var sidebarStatusItems = document.querySelectorAll('.sidebar-status-item');
+    var sidebarItems = document.querySelectorAll('.sidebar-item');
     var pills = document.querySelectorAll('#hub-pills .hub-pill');
-    var mobileStatusPills = document.querySelectorAll('#hub-status-pills .hub-pill');
     var clearFiltersBtn = document.getElementById('clear-filters');
 
     var activeCategory = 'all';
-    var activeStatus = 'all';
     var searchTerm = '';
     var totalTools = 70;
 
@@ -918,12 +886,10 @@
         var sectionVisible = 0;
 
         cards.forEach(function(card) {
-          var status = card.dataset.status;
           var title = card.querySelector('.tool-card-title').textContent.toLowerCase();
-          var statusMatch = activeStatus === 'all' || status === activeStatus;
           var searchMatch = !searchTerm || title.indexOf(searchTerm) !== -1;
 
-          if (statusMatch && searchMatch) {
+          if (searchMatch) {
             card.style.display = '';
             sectionVisible++;
             visibleCount++;
@@ -941,7 +907,7 @@
 
     function setCategory(cat) {
       activeCategory = cat;
-      sidebarCatItems.forEach(function(btn) {
+      sidebarItems.forEach(function(btn) {
         btn.classList.toggle('active', btn.dataset.filter === cat);
       });
       pills.forEach(function(btn) {
@@ -951,38 +917,15 @@
       applyFilters();
     }
 
-    function setStatus(status) {
-      activeStatus = status;
-      sidebarStatusItems.forEach(function(btn) {
-        btn.classList.toggle('active', btn.dataset.status === status);
-      });
-      mobileStatusPills.forEach(function(btn) {
-        btn.classList.toggle('active', btn.dataset.status === status);
-      });
-      applyFilters();
-    }
-
-    sidebarCatItems.forEach(function(btn) {
+    sidebarItems.forEach(function(btn) {
       btn.addEventListener('click', function() {
         setCategory(btn.dataset.filter);
-      });
-    });
-
-    sidebarStatusItems.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        setStatus(btn.dataset.status);
       });
     });
 
     pills.forEach(function(btn) {
       btn.addEventListener('click', function() {
         setCategory(btn.dataset.filter);
-      });
-    });
-
-    mobileStatusPills.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        setStatus(btn.dataset.status);
       });
     });
 
@@ -1004,14 +947,13 @@
       searchTerm = '';
       searchClear.style.display = 'none';
       setCategory('all');
-      setStatus('all');
     });
 
     // URL hash support
     var hash = window.location.hash.slice(1);
     if (hash) {
       var validCategories = [];
-      sidebarCatItems.forEach(function(btn) {
+      sidebarItems.forEach(function(btn) {
         if (btn.dataset.filter) validCategories.push(btn.dataset.filter);
       });
       if (validCategories.indexOf(hash) !== -1) {

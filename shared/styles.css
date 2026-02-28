@@ -605,10 +605,6 @@ a.tool-card:hover .tool-card-title {
   margin-bottom: 1.25rem;
 }
 
-/* Mobile status pills */
-.hub-status-pills {
-  margin-bottom: 1rem;
-}
 
 .hub-tool-count {
   font-size: 0.8125rem;
@@ -660,18 +656,9 @@ a.tool-card:hover .tool-card-title {
   .hub-pills {
     display: flex;
   }
-  .hub-status-pills {
-    display: flex;
-  }
   .hub-layout {
     flex-direction: column;
     gap: 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  .hub-status-pills {
-    display: none;
   }
 }
 
