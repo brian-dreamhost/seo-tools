@@ -92,6 +92,20 @@ All static HTML pages (hub + category pages) use `shared/styles.css` via relativ
 | `email-metrics-calculator` | Email metrics benchmarked against 20 industries | https://email-metrics-calculator.vercel.app/ |
 | `email-list-growth-calculator` | List growth projections with scenarios | https://email-list-growth-calculator.vercel.app/ |
 
+**Local Business Tools:**
+
+| Folder | Description | Vercel URL |
+|---|---|---|
+| `google-business-profile-audit` | GBP optimization checklist with 35 items and scoring | https://google-business-profile-audit.vercel.app/ |
+| `review-response-generator` | Template-based review response generator for all star ratings | https://review-response-generator-beta.vercel.app/ |
+| `review-request-template-builder` | Multi-channel review request templates with QR codes | https://review-request-template-builder.vercel.app/ |
+| `local-business-schema-generator` | LocalBusiness JSON-LD with 19 subtypes | https://local-business-schema-generator.vercel.app/ |
+| `local-seo-keyword-generator` | Location-based keyword variations with intent mapping | https://local-seo-keyword-generator.vercel.app/ |
+| `local-business-description-writer` | Directory listing manager for 9 platforms | https://local-business-description-writer.vercel.app/ |
+| `service-area-map-planner` | Interactive map with radius, polygon, multi-zone drawing | https://service-area-map-planner.vercel.app/ |
+| `nap-consistency-checker` | NAP comparison workbook with diff algorithm | https://nap-consistency-checker.vercel.app/ |
+| `local-competitor-comparison` | Competitive analysis wizard with radar charts | https://local-competitor-comparison.vercel.app/ |
+
 ### Category Tool Lists
 
 **SEO Tools** (9 tools — 2 live):
@@ -112,8 +126,8 @@ Marketing ROI Calculator, A/B Test Sample Size Calculator, Conversion Rate Calcu
 **Design & Branding Tools** (5 tools):
 Color Palette Generator, Contrast Checker (WCAG), Favicon Generator, Font Pairing Tool, Brand Color Extractor
 
-**Local Business Tools** (9 tools):
-Google Business Profile Audit, Review Response Generator, Review Request Template Builder, Local Business Schema Generator, Local SEO Keyword Generator, Local Business Description Writer, Service Area Map Planner, NAP Consistency Checker, Local Competitor Comparison
+**Local Business Tools** (9 tools — all live):
+Google Business Profile Audit, Review Response Generator, Review Request Template Builder, Local Business Schema Generator, Local SEO Keyword Generator, Local Directory Listing Manager, Service Area Map Planner, NAP Consistency Checker, Local Competitor Comparison
 
 **Legal & Compliance Tools** (9 tools):
 Privacy Policy Generator, Terms of Service Generator, Cookie Policy & Banner Generator, Website Accessibility Checker, GDPR/CCPA Compliance Checker, Disclaimer Generator, Return & Refund Policy Generator, Website Legal Page Audit, Color Contrast Checker
