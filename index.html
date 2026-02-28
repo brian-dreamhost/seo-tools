@@ -918,13 +918,11 @@
         ? window.location.pathname + window.location.search
         : window.location.pathname + window.location.search + '#' + cat;
       history.replaceState(null, '', newUrl);
+      // Disable smooth scroll, snap to top, apply filters, re-enable
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo(0, 0);
       applyFilters();
-      // Snap to top of content area instantly (bypass smooth scroll)
-      var main = document.querySelector('.hub-main');
-      if (main) {
-        var top = main.getBoundingClientRect().top + window.scrollY - 32;
-        window.scrollTo({ top: Math.max(0, top), behavior: 'instant' });
-      }
+      document.documentElement.style.scrollBehavior = '';
     }
 
     sidebarItems.forEach(function(btn) {
