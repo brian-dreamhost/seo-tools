@@ -913,12 +913,6 @@
       pills.forEach(function(btn) {
         btn.classList.toggle('active', btn.dataset.filter === cat);
       });
-      // Use replaceState to update URL without triggering browser anchor scroll
-      var newUrl = cat === 'all'
-        ? window.location.pathname + window.location.search
-        : window.location.pathname + window.location.search + '#' + cat;
-      history.replaceState(null, '', newUrl);
-      window.scrollTo(0, 0);
       applyFilters();
     }
 
@@ -953,18 +947,6 @@
       searchClear.style.display = 'none';
       setCategory('all');
     });
-
-    // URL hash support
-    var hash = window.location.hash.slice(1);
-    if (hash) {
-      var validCategories = [];
-      sidebarItems.forEach(function(btn) {
-        if (btn.dataset.filter) validCategories.push(btn.dataset.filter);
-      });
-      if (validCategories.indexOf(hash) !== -1) {
-        setCategory(hash);
-      }
-    }
   })();
   </script>
 </body>
