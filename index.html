@@ -918,10 +918,13 @@
         ? window.location.pathname + window.location.search
         : window.location.pathname + window.location.search + '#' + cat;
       history.replaceState(null, '', newUrl);
-      // Preserve scroll position during layout reflow
-      var scrollY = window.scrollY;
       applyFilters();
-      window.scrollTo(0, scrollY);
+      // Snap to top of content area instantly (bypass smooth scroll)
+      var main = document.querySelector('.hub-main');
+      if (main) {
+        var top = main.getBoundingClientRect().top + window.scrollY - 32;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'instant' });
+      }
     }
 
     sidebarItems.forEach(function(btn) {
