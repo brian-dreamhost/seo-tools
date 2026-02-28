@@ -83,6 +83,21 @@
             <span class="sidebar-label">Advertising</span>
             <span class="sidebar-count">5</span>
           </button>
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-section-label">Status</div>
+          <button class="sidebar-item sidebar-status-item active" data-status="all">
+            <span class="sidebar-label">All Statuses</span>
+          </button>
+          <button class="sidebar-item sidebar-status-item" data-status="live">
+            <span class="sidebar-dot dot-live"></span>
+            <span class="sidebar-label">Live</span>
+            <span class="sidebar-count" id="live-count">36</span>
+          </button>
+          <button class="sidebar-item sidebar-status-item" data-status="coming">
+            <span class="sidebar-dot dot-coming"></span>
+            <span class="sidebar-label">Coming Soon</span>
+            <span class="sidebar-count" id="coming-count">34</span>
+          </button>
         </nav>
       </aside>
 
@@ -99,15 +114,15 @@
         <button class="hub-pill" data-filter="design">Design (5)</button>
         <button class="hub-pill" data-filter="advertising">Ads (5)</button>
       </div>
+      <!-- Mobile status pills -->
+      <div class="hub-pills hub-status-pills" id="hub-status-pills">
+        <button class="hub-pill active" data-status="all">All Statuses</button>
+        <button class="hub-pill" data-status="live">Live (36)</button>
+        <button class="hub-pill" data-status="coming">Coming Soon (34)</button>
+      </div>
 
       <main class="hub-main">
-        <!-- Filter bar -->
-        <div class="hub-filter-bar">
-          <div class="hub-status-filters">
-            <button class="status-pill active" data-status="all">All</button>
-            <button class="status-pill" data-status="live">Live</button>
-            <button class="status-pill" data-status="coming">Coming Soon</button>
-          </div>
+        <div class="hub-tool-count-bar">
           <span class="hub-tool-count" id="tool-count">Showing 70 of 70 tools</span>
         </div>
 
@@ -868,9 +883,11 @@
     var toolCount = document.getElementById('tool-count');
     var noResults = document.getElementById('no-results');
     var sections = document.querySelectorAll('.category-section');
-    var sidebarItems = document.querySelectorAll('.sidebar-item');
-    var pills = document.querySelectorAll('.hub-pill');
-    var statusPills = document.querySelectorAll('.status-pill');
+    var categoryHeaders = document.querySelectorAll('.category-header');
+    var sidebarCatItems = document.querySelectorAll('.sidebar-item:not(.sidebar-status-item)');
+    var sidebarStatusItems = document.querySelectorAll('.sidebar-status-item');
+    var pills = document.querySelectorAll('#hub-pills .hub-pill');
+    var mobileStatusPills = document.querySelectorAll('#hub-status-pills .hub-pill');
     var clearFiltersBtn = document.getElementById('clear-filters');
 
     var activeCategory = 'all';
@@ -880,14 +897,21 @@
 
     function applyFilters() {
       var visibleCount = 0;
+      var singleCategory = activeCategory !== 'all';
 
       sections.forEach(function(section) {
         var cat = section.dataset.category;
-        var catMatch = activeCategory === 'all' || cat === activeCategory;
+        var catMatch = !singleCategory || cat === activeCategory;
 
         if (!catMatch) {
           section.style.display = 'none';
           return;
+        }
+
+        // Hide category header when a specific category is selected
+        var header = section.querySelector('.category-header');
+        if (header) {
+          header.style.display = singleCategory ? 'none' : '';
         }
 
         var cards = section.querySelectorAll('.tool-card');
@@ -917,7 +941,7 @@
 
     function setCategory(cat) {
       activeCategory = cat;
-      sidebarItems.forEach(function(btn) {
+      sidebarCatItems.forEach(function(btn) {
         btn.classList.toggle('active', btn.dataset.filter === cat);
       });
       pills.forEach(function(btn) {
@@ -929,15 +953,24 @@
 
     function setStatus(status) {
       activeStatus = status;
-      statusPills.forEach(function(btn) {
+      sidebarStatusItems.forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.status === status);
+      });
+      mobileStatusPills.forEach(function(btn) {
         btn.classList.toggle('active', btn.dataset.status === status);
       });
       applyFilters();
     }
 
-    sidebarItems.forEach(function(btn) {
+    sidebarCatItems.forEach(function(btn) {
       btn.addEventListener('click', function() {
         setCategory(btn.dataset.filter);
+      });
+    });
+
+    sidebarStatusItems.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        setStatus(btn.dataset.status);
       });
     });
 
@@ -947,7 +980,7 @@
       });
     });
 
-    statusPills.forEach(function(btn) {
+    mobileStatusPills.forEach(function(btn) {
       btn.addEventListener('click', function() {
         setStatus(btn.dataset.status);
       });
@@ -978,8 +1011,8 @@
     var hash = window.location.hash.slice(1);
     if (hash) {
       var validCategories = [];
-      sidebarItems.forEach(function(btn) {
-        validCategories.push(btn.dataset.filter);
+      sidebarCatItems.forEach(function(btn) {
+        if (btn.dataset.filter) validCategories.push(btn.dataset.filter);
       });
       if (validCategories.indexOf(hash) !== -1) {
         setCategory(hash);
