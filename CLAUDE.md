@@ -178,7 +178,7 @@ Use these exact values. In Tailwind projects, register them in `@theme` block in
 | `off-white` | `#F4F6F9` | Light mode backgrounds (if needed) |
 | `smoke` | `#E0E4E8` | Light borders |
 | `cloudy` | `#AFBFC9` | Body text, descriptions, secondary text |
-| `galactic` | `#677983` | Muted text, labels, placeholders |
+| `galactic` | `#7E939F` | Muted text, labels, placeholders |
 | `metal` | `#434F58` | Borders, dividers (often used at `/20` or `/30` opacity) |
 
 ### Typography
@@ -212,7 +212,7 @@ Every Tailwind project should include this in `src/index.css`:
   --color-off-white: #F4F6F9;
   --color-smoke: #E0E4E8;
   --color-cloudy: #AFBFC9;
-  --color-galactic: #677983;
+  --color-galactic: #7E939F;
   --color-metal: #434F58;
 }
 ```
@@ -309,215 +309,98 @@ Give each agent complete, self-contained instructions — they start fresh with 
 
 ## Usefulness Agent
 
-Run this evaluation **before building any tool** — during planning, before any code is written. The purpose is to ensure every tool we ship is genuinely valuable to a small business marketer, not just a checkbox on a feature list. The agent should deeply empathize with the target user, challenge assumptions, and modify the plan if needed.
+You are a Usefulness Agent. Your job is to evaluate and improve every tool in this project against a single standard: would a power user choose this over a dedicated SaaS product?
 
-### Target User
+### Tools Must DO Something, Not Just Format Something
 
-A small business owner or marketer who:
-- Is not a developer or SEO expert
-- Has limited time and budget
-- Needs tools that produce immediate, actionable results
-- Will only bookmark and return to tools that save real time
-- Judges tools by "did this actually help me?" not "is this technically impressive?"
+The minimum bar for a "tool" is that it performs work the user cannot easily do themselves in a text editor or spreadsheet. If the output is just the user's input rearranged or wrapped in a template, it's a notepad, not a tool.
 
-### Evaluation Criteria
+**A real tool takes action:**
+- Makes an external request (API call, URL fetch, DNS lookup, live data check)
+- Performs analysis the user couldn't do by hand in under 30 seconds
+- Generates output that required computation, not just substitution
+- Validates against a live or authoritative data source, not just a regex
 
-Score each criterion as **High / Medium / Low**. A tool that scores **Low on any High-weight criterion** must be redesigned or cut. A tool that scores **Low on 2+ Medium-weight criteria** should be reconsidered.
+**The Google Business Profile Audit Tool is the standard to match:**
+- Takes a URL or identifier as input
+- Goes and fetches/checks something real
+- Returns findings the user didn't already know
+- Surfaces actionable gaps, not just a reflection of what they entered
 
-| Criterion | Question | Weight |
-|-----------|----------|--------|
-| **Return frequency** | Will users come back more than once? Or is this a one-and-done tool? | High |
-| **Time saved** | Does this save >2 minutes vs. the current best free alternative? | High |
-| **Differentiation** | Is the best free alternative meaningfully worse than what we're building? | High |
-| **Accuracy** | Can we deliver results that are reliably correct with a client-side app? | High |
-| **Actionability** | Does every output come with a clear "do this next" step? | Medium |
-| **Audience fit** | Does a non-expert small business marketer actually need this? | Medium |
-| **Standalone viability** | Is this a real tool or just a feature that belongs inside another tool? | Medium |
-| **Premise validity** | Is the underlying concept still relevant and accurate in 2026? | Medium |
-| **Build complexity** | Can we build this well within our stack (client-side React)? | Low |
-| **SEO value** | Will this page rank for valuable search terms? | Low |
+**Apply this test to every tool before shipping:**
+Ask: "Could a user get the same output by typing their input into a Word doc or ChatGPT prompt?"
+If yes → the tool needs an external data source, live check, computed analysis, or API integration to justify existing.
 
-### Usefulness Traps to Check For
+**Upgrade paths for tools that are currently notepads:**
+- Generators → add scoring, validation, or comparison against real benchmarks
+- Previewers → fetch live metadata from the actual URL instead of accepting manual input
+- Analyzers → run against a real standard or dataset, not just pattern-match the input
+- Calculators → pull live benchmarks or industry averages to contextualize the result
 
-The agent must explicitly check for and flag these patterns:
+**Preferred live data sources to integrate (where applicable):**
+- URL/page content: fetch and parse directly
+- DNS/WHOIS: public lookup APIs
+- PageSpeed/CWV: Google PageSpeed Insights API (free, no auth required)
+- Structured data: Google Rich Results API or schema.org validation
+- Open Graph / meta: direct URL fetch and parse
+- Accessibility: axe-core or similar client-side engine
 
-1. **The Scoreless Score** — Tool produces a number (0-100) with no explanation, benchmarks, or actionable next step. *Rule: Every score needs plain-language meaning, a benchmark, and one specific improvement action.*
+### The Usefulness Standard
 
-2. **The Generic Generator** — AI-powered tool that produces output indistinguishable from asking ChatGPT. *Rule: Generators must use structured inputs that create meaningfully different outputs, produce formatted artifacts a chatbot can't (JSON-LD, HTML email signatures), or provide a workflow/framework — not just raw text.*
+A tool passes the bar when it satisfies ALL of the following:
 
-3. **The One-Visit Tool** — Solves a problem the user has exactly once, then never returns. *Rule: Not disqualifying, but one-visit tools must complete in <30 seconds. Consider embedding as a feature inside a higher-traffic tool instead.*
+**Practical, not just novel**
+- Solves a real workflow problem, not a toy version of one
+- Handles edge cases a beginner wouldn't think of but a power user definitely would
+- Works with realistic, messy inputs — not just happy-path examples
 
-4. **The Outdated Premise** — Built on advice or assumptions that are no longer accurate. *Rule: Before building, verify the underlying premise is still valid. "Would an expert recommend this approach in 2026?"*
+**Fully featured**
+- Includes every output a user would need to act on the result immediately (no "next step" left undone)
+- Offers configuration/options for the most common variations (not just defaults)
+- Supports copy, export, or direct-use output (not just display)
+- Validates inputs and gives useful error messages, not silent failures
 
-5. **The Context-Free Calculator** — Does math the user could do on their phone, without interpretation. *Rule: Every calculator must include benchmarks, projections, or scenario comparisons. The value is in the "so what?" not the arithmetic.*
+**Saves real time**
+- Replaces at least one external tool, tab, or manual step
+- Provides output ready to paste, publish, or deploy — zero reformatting needed
+- Batch input support where the use case naturally involves multiple items
 
-6. **The Impossible Accuracy Problem** — Promises to preview/simulate something that varies too much to be reliable. *Rule: If accuracy can't be reasonable, scope to what works (3-4 major platforms with disclaimers) or don't build it.*
+**Clear visual hierarchy**
+- Primary action is immediately obvious without reading instructions
+- Input → Output flow is spatially obvious (left-to-right or top-to-bottom)
+- Labels describe outcomes, not mechanics ("Generate Schema" not "Submit")
+- Results are visually distinct from controls — no hunting for the output
 
-7. **The Feature Masquerading as a Tool** — Can be fully expressed as a single input + single output. *Rule: If it fits in one text field and one result, it's probably a feature. Combine with a related tool that drives repeat visits.*
+**Instructive without being verbose**
+- Inline contextual help explains WHY, not just WHAT (e.g., "Max 160 chars — Google truncates beyond this")
+- Field-level hints anticipate the most common user mistake
+- One example pre-loaded or available on demand so users understand expected input format
+- No wall-of-text instructions before the tool — get them into the tool first
 
-8. **The "Works for Experts" Tool** — Only useful if you already understand the domain well enough to not need it. *Rule: Every input must have sensible defaults and plain-language explanations. If a user doesn't know what "minimum detectable effect" means, the tool must explain it.*
+**Trustworthy output**
+- Output follows current best practices (not 2019 specs)
+- Cites or references the standard it's following where relevant
+- Flags when output is an estimate vs. authoritative (e.g., readability scores, timing recommendations)
+- Never outputs placeholder text, broken formatting, or incomplete results
 
-### Integration Philosophy
+### Your Process
 
-Our default stance is **self-contained, client-side tools with zero backend dependencies**. This keeps tools free forever, fast, and private (no user data leaves the browser).
+When asked to build or audit a tool:
 
-- **Preferred**: Pure client-side logic, browser APIs (Canvas, Clipboard, File API, Web Workers, etc.)
-- **Acceptable**: Free, public APIs with no auth required (e.g., PageSpeed Insights API, public DNS lookups, open data sets)
-- **Ask the user first**: Free APIs that require an API key (e.g., Google Search Console API, free-tier services) — present as an optional enhancement, not a requirement
-- **Avoid**: Paid APIs, rate-limited services that would break under real usage, any dependency that could disappear or start charging
-- **Never**: APIs that require users to create accounts or share credentials with our tool
+1. **Define the power user** — Who uses this professionally? What do they already know? What do they need that beginners don't?
+2. **List the jobs-to-be-done** — What are all the things a user needs to accomplish with this tool?
+3. **Audit against the standard** — Score each dimension above and identify the gaps
+4. **Propose and implement improvements** — Prioritize changes with the highest usefulness-to-effort ratio
+5. **Final check** — Would you personally use this tool again next week? If not, what's missing?
 
-When the Competitive Research Agent identifies a feature gap that requires an API, it must classify the integration using the tiers above and present the trade-off to the user via questionnaire before including it in scope.
+### Non-Negotiables
 
-### Competitive Research Sub-Agent
-
-The Usefulness Agent may deploy a **Competitive Research Agent** at its discretion. This is a strictly read-only research agent — it does not write code or modify files. It can also be invoked directly by the user for retroactive audits of tools already built.
-
-#### When to Deploy
-
-The Usefulness Agent should deploy this sub-agent when:
-- A new tool is being planned and the competitive landscape is unclear
-- The Usefulness Agent scores "Differentiation" as uncertain and needs real data
-- The user explicitly requests a competitive audit of an existing or planned tool
-- A tool category is being prioritized and we need to know which tool to build first
-
-#### Sub-Agent Workflow
-
-1. **Identify search queries** — Determine the 3-5 queries a target user would search to find this type of tool (e.g., "free SERP preview tool", "google search result previewer", "meta tag checker free")
-2. **Audit top-ranking competitors** — For each query, examine the top 5-10 results via web search and fetch. For each competitor:
-   - What features does it offer?
-   - Is it truly free, freemium, or bait-and-switch (free to use, pay to export)?
-   - What's the UX quality? (Fast? Clean? Ad-heavy? Mobile-friendly?)
-   - What are users complaining about? (Check for obvious UX pain points, missing features, outdated data)
-3. **Build a feature matrix** — Create a table: rows = features, columns = competitors + our planned tool. Mark each as present/absent/partial.
-4. **Identify feature gaps** — What do the top 2-3 competitors offer that our plan doesn't? Classify each gap:
-   - **Must-have gap**: Competitors all have it; users expect it. We need it or we look incomplete.
-   - **Differentiator opportunity**: No competitor does this well (or at all). This is our angle.
-   - **Nice-to-have**: Some competitors have it, but it's not core to the user's job-to-be-done.
-   - **Skip**: Competitor feature that adds bloat, requires paid APIs, or doesn't fit our audience.
-5. **Assess integration requirements** — For each must-have or differentiator feature:
-   - Can it be built client-side? If yes, recommend it.
-   - Does it require a free public API? If yes, identify the specific API, confirm it's free/no-auth, and recommend it.
-   - Does it require a paid or authenticated API? If yes, flag it and classify per the Integration Philosophy tiers above. Present to the user as an optional enhancement with clear trade-offs.
-6. **Produce recommendations** — Specific, actionable feature additions or modifications to the plan, ranked by impact.
-
-#### Sub-Agent Output Format
-
-```
-## Competitive Research: [Tool Name]
-
-### Search Queries Analyzed
-- "[query 1]" — [X results examined]
-- "[query 2]" — [X results examined]
-
-### Top Competitors
-| Competitor | URL | Free? | Key Strengths | Key Weaknesses |
-|------------|-----|-------|---------------|----------------|
-| [Name] | [URL] | Yes/Freemium/No | [strengths] | [weaknesses] |
-
-### Feature Matrix
-| Feature | Competitor A | Competitor B | Competitor C | Our Plan |
-|---------|-------------|-------------|-------------|----------|
-| [Feature 1] | Yes | Yes | No | Yes |
-| [Feature 2] | Yes | No | Yes | Missing |
-
-### Feature Gap Analysis
-**Must-have gaps** (need these to be competitive):
-- [Feature]: [why it's expected, how to build it, client-side feasible: yes/no]
-
-**Differentiator opportunities** (our angle to stand out):
-- [Feature]: [why no one does this well, how we'd do it better]
-
-**Nice-to-have** (consider for v2):
-- [Feature]: [context]
-
-**Skip** (not worth it):
-- [Feature]: [why — paid API, bloat, wrong audience, etc.]
-
-### Integration Requirements
-| Feature | Implementation | API Required? | Tier | Recommendation |
-|---------|---------------|---------------|------|----------------|
-| [Feature] | [approach] | None / Free public / Free w/ key / Paid | Preferred/Acceptable/Ask user/Avoid | [Include/Optional/Skip] |
-
-### Summary Recommendations
-[Ranked list of specific changes to the plan, with rationale]
-```
-
-#### Retroactive Mode
-
-When invoked by the user on an existing live tool, the sub-agent follows the same workflow but adds:
-- Compare our live tool's current feature set against the competitor matrix
-- Flag features we're missing that competitors have added since our launch
-- Recommend specific enhancements, prioritized by user impact
-- Note any competitors that have launched since our tool went live
-
-### Usefulness Agent Workflow
-
-1. **Read the plan** — Understand what the tool does, who it's for, and how it works
-2. **Identify the user's job-to-be-done** — What specific task is the user trying to accomplish? What's the pain point?
-3. **Deploy Competitive Research Agent** (at discretion) — If the competitive landscape is unclear, differentiation is uncertain, or the tool is high-investment, deploy the sub-agent to gather real data before scoring
-4. **Score against criteria** — Evaluate each of the 10 criteria above, informed by competitive research if available
-5. **Check for traps** — Explicitly test against all 8 trap patterns
-6. **Propose modifications** — If the tool scores poorly, suggest specific changes:
-   - Rebrand/reframe the concept (e.g., "Spam Word Checker" → "Email Deliverability Checklist")
-   - Add a differentiating feature informed by competitive gaps
-   - Merge with another tool (e.g., "Website Speed Impact Calculator" → tab inside Core Web Vitals Checker)
-   - Scope down to what can be done well (e.g., "Email Preview Renderer" → just Gmail + Outlook + Apple Mail with disclaimers)
-   - Kill it if nothing saves it (e.g., "Word & Character Counter" as a standalone tool)
-   - For features requiring APIs, present user questionnaire with trade-offs per Integration Philosophy
-7. **Issue a verdict** — One of:
-   - **BUILD** — Tool is genuinely useful as planned
-   - **BUILD WITH MODIFICATIONS** — Useful concept, but needs the specified changes
-   - **RECONSIDER** — The premise needs significant rethinking before proceeding
-   - **DON'T BUILD** — Better to invest the time elsewhere; explain why
-
-### Output Format
-
-```
-## Usefulness Evaluation: [Tool Name]
-
-### User Story
-As a [specific user type], I need to [specific task] because [specific pain point].
-
-### Competitive Landscape
-[Summarized from Competitive Research Agent if deployed, or from general knowledge]
-- [Existing alternative 1]: [quality assessment]
-- [Existing alternative 2]: [quality assessment]
-- Our angle: [what makes ours worth using]
-- Key feature gaps to close: [list]
-- Key differentiator opportunities: [list]
-
-### Criteria Scores
-| Criterion | Score | Rationale |
-|-----------|-------|-----------|
-| Return frequency | High/Med/Low | [why] |
-| Time saved | High/Med/Low | [why] |
-| ... | ... | ... |
-
-### Trap Check
-- [ ] Scoreless Score: [pass/fail + detail]
-- [ ] Generic Generator: [pass/fail + detail]
-- [ ] One-Visit Tool: [pass/fail + detail]
-- [ ] Outdated Premise: [pass/fail + detail]
-- [ ] Context-Free Calculator: [pass/fail + detail]
-- [ ] Impossible Accuracy: [pass/fail + detail]
-- [ ] Feature Not Tool: [pass/fail + detail]
-- [ ] Works for Experts: [pass/fail + detail]
-
-### Modifications Required
-[Specific, actionable changes — or "None" if BUILD]
-
-### Integration Decisions (if applicable)
-[For any feature that requires an API or external dependency, present as a user question]
-| Feature | What It Adds | Requires | Tier | Trade-off |
-|---------|-------------|----------|------|-----------|
-| [Feature] | [user benefit] | [API/service name] | Preferred/Acceptable/Ask user | [what we gain vs. what we risk] |
-
-Recommendation: [Include / Make optional / Skip] — [rationale]
-
-### Verdict: [BUILD / BUILD WITH MODIFICATIONS / RECONSIDER / DON'T BUILD]
-[1-2 sentence summary of why]
-```
+- No lorem ipsum, no placeholder outputs
+- No broken states or empty results for valid inputs
+- Every tool must have a working copy/export mechanism
+- Mobile usability is required, not optional
+- Dark mode support where the design system supports it
+- Performance: tool must be interactive in under 2 seconds on a standard connection
 
 ## UX Quality Control Checklist
 
