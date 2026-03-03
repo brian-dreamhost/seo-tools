@@ -427,3 +427,150 @@ Run this checklist after every tool build. A dedicated UX QC agent should read e
 - **Loading/transition states**: smooth animations, no layout shift
 - **Typography hierarchy**: headings, body, muted text use correct tokens
 - **Cross-browser**: no Tailwind features that break in Safari/Firefox
+
+## WCAG 2.1 AA Accessibility Standards
+
+**Every page and tool must meet WCAG 2.1 Level AA.** These are non-negotiable requirements for all new builds and fixes.
+
+### Skip Navigation
+
+Every page must have a skip link as the first child of `<body>`:
+
+**Static pages (HTML):**
+```html
+<a href="#main" class="skip-link">Skip to main content</a>
+```
+The `.skip-link` class is defined in `shared/styles.css` — visually hidden, appears on keyboard focus.
+
+**React tools:**
+```html
+<!-- In index.html, before <div id="root"> -->
+<a href="#main" class="skip-link">Skip to main content</a>
+```
+```css
+/* Add to src/index.css */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-azure);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0; outline: 2px solid #fff; outline-offset: 2px; }
+```
+Then add `id="main"` to the outermost content wrapper in App.jsx.
+
+### Landmarks
+
+- Every page must have a `<main id="main">` element
+- Static pages: the container `<div>` should be `<main>` instead
+- React tools: add `id="main"` to the top-level wrapper in App.jsx
+
+### Color Contrast (WCAG 1.4.3)
+
+**Minimum ratios:**
+- Normal text (<18px, or <14px bold): **4.5:1**
+- Large text (≥18px, or ≥14px bold): **3:1**
+- UI components and icons: **3:1**
+
+**Known safe combinations (use these):**
+
+| Foreground | Background | Ratio | Status |
+|---|---|---|---|
+| `white` (#FFF) on `abyss` (#000) | | 21.0:1 | PASS |
+| `white` (#FFF) on `oblivion` (#111) | | 18.9:1 | PASS |
+| `cloudy` (#AFBFC9) on `abyss` (#000) | | 11.1:1 | PASS |
+| `cloudy` (#AFBFC9) on `oblivion` (#111) | | 10.0:1 | PASS |
+| `galactic` (#7E939F) on `abyss` (#000) | | 6.6:1 | PASS |
+| `galactic` (#7E939F) on `oblivion` (#111) | | 5.9:1 | PASS |
+| `azure` (#0073EC) on `abyss` (#000) | | 4.7:1 | PASS |
+| `turtle` (#00CAAA) on `abyss` (#000) | | 10.0:1 | PASS |
+
+**Known FAILING combinations (never use for normal text):**
+
+| Foreground | Background | Ratio | Status |
+|---|---|---|---|
+| `azure` (#0073EC) on `oblivion` (#111) | | 4.2:1 | FAIL |
+| `azure` (#0073EC) on `midnight` (#071C26) | | 3.9:1 | FAIL |
+| `metal` (#434F58) on `abyss` (#000) | | 2.5:1 | FAIL |
+| `white/40` on dark backgrounds | | 3.7:1 | FAIL |
+| `white/50` on dark backgrounds | | 5.3:1 | borderline |
+
+**Rules:**
+- `text-azure` is safe on `bg-abyss` (4.7:1) but **fails on `bg-oblivion` and card-gradient backgrounds** for normal text. Use `text-white` for hover states on cards instead.
+- `text-galactic` is safe on all dark backgrounds (5.5:1+) after the #677983 → #7E939F fix.
+- Never apply `opacity` to a parent element to dim children — it degrades text contrast. Dim individual elements instead.
+
+### Focus Indicators
+
+Every interactive element must have a visible `:focus-visible` style:
+
+**Tailwind (React tools):**
+```
+focus:outline-none focus-visible:ring-2 focus-visible:ring-azure focus-visible:ring-offset-2 focus-visible:ring-offset-abyss
+```
+
+**Static pages:** Focus styles are defined in `shared/styles.css` for all interactive elements. If you add a new interactive element class, add a `:focus-visible` rule for it.
+
+### Decorative SVGs
+
+All SVGs that are purely decorative (icons next to text, background elements) must have `aria-hidden="true"`:
+```html
+<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" ...>
+```
+
+Meaningful SVGs (the only way to understand something) need an accessible name:
+```html
+<svg role="img" aria-label="Description of what this shows" ...>
+```
+
+### Form Accessibility
+
+- Every `<input>`, `<select>`, `<textarea>` must have an accessible label via one of:
+  - `aria-label="Label text"` (simplest for our tools)
+  - `<label htmlFor="input-id">` with matching `id` on the input
+  - `aria-labelledby="heading-id"` referencing a visible heading
+- Icon-only buttons must have `aria-label`:
+```jsx
+<button aria-label="Clear search" onClick={...}>
+  <svg aria-hidden="true" ...>...</svg>
+</button>
+```
+
+### Dynamic Content
+
+- Results areas should have `aria-live="polite"` so screen readers announce updates:
+```jsx
+<div aria-live="polite" role="region" aria-label="Results">
+  {results && <ResultsComponent />}
+</div>
+```
+- Loading states should use `aria-busy="true"` on the container
+- Error messages should use `role="alert"`
+
+### Heading Hierarchy
+
+- Exactly one `<h1>` per page (the tool/page name)
+- Headings must not skip levels: h1 → h2 → h3 (no h1 → h3)
+- Use headings for structure, not for styling
+
+### Keyboard Operability
+
+- All interactive elements must be operable via keyboard (Tab, Enter, Space, Escape)
+- Never use `<div onClick>` or `<span onClick>` without `role="button"`, `tabIndex="0"`, and `onKeyDown` handler
+- Tab-like UI patterns need ARIA: `role="tablist"`, `role="tab"`, `aria-selected`, arrow key navigation
+- Modal/overlay patterns need focus trapping and Escape to close
+
+### Audit Agent
+
+A comprehensive WCAG audit agent is available at `docs/agents/wcag-accessibility-audit.md`. Run it on any tool or page:
+```
+Agent(subagent_type="general-purpose", prompt="Follow the WCAG accessibility audit procedure in docs/agents/wcag-accessibility-audit.md. Target: [tool-folder]/")
+```
