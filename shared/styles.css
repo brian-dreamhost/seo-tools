@@ -6,6 +6,28 @@
   box-sizing: border-box;
 }
 
+/* Skip navigation link — visible only on focus */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-azure);
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+}
+
 :root {
   --color-abyss: #000000;
   --color-oblivion: #111111;
@@ -211,6 +233,60 @@ h1 {
   cursor: default;
 }
 
+/* ===== Focus-visible indicators ===== */
+.tile:focus-visible,
+.tool-card:focus-visible {
+  outline: 2px solid var(--color-azure);
+  outline-offset: 2px;
+}
+
+.sidebar-item:focus-visible,
+.hub-pill:focus-visible,
+.hub-clear-btn:focus-visible {
+  outline: 2px solid var(--color-azure);
+  outline-offset: 2px;
+}
+
+.hub-search-input:focus-visible {
+  outline: none;
+  border-color: var(--color-azure);
+  box-shadow: 0 0 0 2px rgba(0, 115, 236, 0.3);
+}
+
+.hub-search-clear:focus-visible {
+  outline: 2px solid var(--color-azure);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+.breadcrumb a:focus-visible,
+.footer-inner a:focus-visible,
+.content-section a:focus-visible,
+.tool-picker-link:focus-visible,
+.faq-answer a:focus-visible,
+.cross-category-links a:focus-visible,
+.related-article-card:focus-visible {
+  outline: 2px solid var(--color-azure);
+  outline-offset: 2px;
+  border-radius: 0.125rem;
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--color-azure);
+  outline-offset: 2px;
+}
+
+.cta-banner-button:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+.category-header-link:focus-visible {
+  outline: 2px solid var(--color-azure);
+  outline-offset: 4px;
+  border-radius: 0.25rem;
+}
+
 /* Category tile variant (for parent hub) */
 .category-tile {
   padding: 2rem;
@@ -364,12 +440,23 @@ a.tool-card:hover .tool-card-icon svg {
 }
 
 a.tool-card:hover .tool-card-title {
-  color: var(--color-azure);
+  color: var(--color-white);
 }
 
 .tool-card-coming {
-  opacity: 0.6;
   cursor: default;
+}
+
+.tool-card-coming .tool-card-icon svg {
+  opacity: 0.5;
+}
+
+.tool-card-coming .tool-card-title {
+  color: var(--color-galactic);
+}
+
+.tool-card-coming .tile-status {
+  opacity: 0.7;
 }
 
 .tool-card-icon {
