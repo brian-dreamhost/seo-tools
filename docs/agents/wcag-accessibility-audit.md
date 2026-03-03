@@ -27,7 +27,7 @@ All projects in this codebase use the same color palette. These are the exact he
 | off-white | #F4F6F9 | Light backgrounds |
 | smoke | #E0E4E8 | Light borders |
 | cloudy | #AFBFC9 | Body text, descriptions |
-| galactic | #677983 | Muted text, labels, placeholders |
+| galactic | #7E939F | Muted text, labels, placeholders |
 | metal | #434F58 | Borders, dividers |
 | white | #FFFFFF | Headings, primary text |
 
@@ -71,11 +71,14 @@ contrast_ratio = (L_lighter + 0.05) / (L_darker + 0.05)
   - Then compute contrast of the composited foreground against the background
 
 **Known risk combinations in this codebase (always flag):**
-- `text-galactic` (#677983) on `bg-oblivion` (#111111) — ratio ~3.5:1, FAILS AA for normal text
-- `text-galactic` (#677983) on `bg-midnight` (#071C26) — ratio ~3.0:1, FAILS AA
+- `text-azure` (#0073EC) on `bg-oblivion` (#111111) — ratio 4.2:1, FAILS AA for normal text
+- `text-azure` (#0073EC) on `bg-midnight` (#071C26) — ratio 3.9:1, FAILS AA for normal text
 - `text-white/50` on any dark background — likely fails
-- `text-metal` (#434F58) on dark backgrounds — likely fails
-- `text-galactic` on card-gradient backgrounds — verify against #111111
+- `text-metal` (#434F58) on dark backgrounds — ratio 2.5:1, FAILS AA
+- `text-white/40` on dark backgrounds — ratio 3.7:1, FAILS AA for normal text
+
+**Previously fixed (galactic #677983 → #7E939F):**
+- `text-galactic` (#7E939F) now passes on all dark backgrounds (5.5:1+)
 
 ### Phase 3: Keyboard & Focus (WCAG 2.1 SC 2.1.1 / 2.4.7)
 
@@ -203,36 +206,36 @@ Use these verified ratios to speed up your audit:
 | Foreground | Background | Ratio | AA Normal | AA Large | AAA Normal |
 |---|---|---|---|---|---|
 | #FFFFFF on #000000 | | 21.0:1 | PASS | PASS | PASS |
-| #FFFFFF on #111111 | | 17.4:1 | PASS | PASS | PASS |
-| #FFFFFF on #071C26 | | 18.1:1 | PASS | PASS | PASS |
-| #FFFFFF on #0073EC | | 4.6:1 | PASS | PASS | FAIL |
-| #AFBFC9 on #000000 | | 7.9:1 | PASS | PASS | PASS |
-| #AFBFC9 on #111111 | | 6.5:1 | PASS | PASS | FAIL |
-| #AFBFC9 on #071C26 | | 6.8:1 | PASS | PASS | FAIL |
-| #677983 on #000000 | | 4.2:1 | FAIL | PASS | FAIL |
-| #677983 on #111111 | | 3.5:1 | FAIL | PASS | FAIL |
-| #677983 on #071C26 | | 3.6:1 | FAIL | PASS | FAIL |
-| #0073EC on #000000 | | 4.6:1 | PASS | PASS | FAIL |
-| #0073EC on #111111 | | 3.8:1 | FAIL | PASS | FAIL |
+| #FFFFFF on #111111 | | 18.9:1 | PASS | PASS | PASS |
+| #FFFFFF on #071C26 | | 17.5:1 | PASS | PASS | PASS |
+| #FFFFFF on #0073EC | | 4.5:1 | PASS | PASS | FAIL |
+| #AFBFC9 on #000000 | | 11.1:1 | PASS | PASS | PASS |
+| #AFBFC9 on #111111 | | 10.0:1 | PASS | PASS | PASS |
+| #AFBFC9 on #071C26 | | 9.2:1 | PASS | PASS | PASS |
+| #7E939F on #000000 | | 6.6:1 | PASS | PASS | FAIL |
+| #7E939F on #111111 | | 5.9:1 | PASS | PASS | FAIL |
+| #7E939F on #071C26 | | 5.5:1 | PASS | PASS | FAIL |
+| #0073EC on #000000 | | 4.7:1 | PASS | PASS | FAIL |
+| #0073EC on #111111 | | 4.2:1 | FAIL | PASS | FAIL |
 | #0073EC on #071C26 | | 3.9:1 | FAIL | PASS | FAIL |
-| #00CAAA on #000000 | | 8.6:1 | PASS | PASS | PASS |
-| #FF4A48 on #000000 | | 4.8:1 | PASS | PASS | FAIL |
-| #F59D00 on #000000 | | 7.4:1 | PASS | PASS | PASS |
-| #A644E5 on #000000 | | 4.0:1 | FAIL | PASS | FAIL |
-| #434F58 on #000000 | | 2.3:1 | FAIL | FAIL | FAIL |
-| #E0E4E8 on #000000 | | 13.4:1 | PASS | PASS | PASS |
+| #00CAAA on #000000 | | 10.0:1 | PASS | PASS | PASS |
+| #FF4A48 on #000000 | | 6.3:1 | PASS | PASS | FAIL |
+| #F59D00 on #000000 | | 9.7:1 | PASS | PASS | PASS |
+| #A644E5 on #000000 | | 4.6:1 | PASS | PASS | FAIL |
+| #434F58 on #000000 | | 2.5:1 | FAIL | FAIL | FAIL |
+| #E0E4E8 on #000000 | | 16.4:1 | PASS | PASS | PASS |
 
 **Opacity compositing reference (white on #000000):**
 | Opacity | Effective Hex | Ratio vs #000 |
 |---|---|---|
 | 100% | #FFFFFF | 21.0:1 |
-| 85% | #D9D9D9 | 14.7:1 |
-| 80% | #CCCCCC | 12.6:1 |
-| 70% | #B3B3B3 | 9.6:1 |
-| 60% | #999999 | 7.0:1 |
+| 85% | #D9D9D9 | 14.9:1 |
+| 80% | #CCCCCC | 13.1:1 |
+| 70% | #B3B3B3 | 10.0:1 |
+| 60% | #999999 | 7.4:1 |
 | 50% | #808080 | 5.3:1 |
-| 40% | #666666 | 3.9:1 |
-| 30% | #4D4D4D | 2.9:1 |
+| 40% | #666666 | 3.7:1 |
+| 30% | #4D4D4D | 2.5:1 |
 
 ## Invocation
 
