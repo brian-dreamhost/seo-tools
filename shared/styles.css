@@ -161,14 +161,14 @@ h1 {
   padding: 1.5rem;
   text-decoration: none;
   color: inherit;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
 .tile:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px) scale(1.01);
   border-color: rgba(0, 115, 236, 0.5);
   box-shadow: 0 8px 24px rgba(0, 115, 236, 0.12);
 }
@@ -423,14 +423,14 @@ footer {
   padding: 1.25rem;
   text-decoration: none;
   color: inherit;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
 a.tool-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px) scale(1.01);
   border-color: rgba(0, 115, 236, 0.5);
   box-shadow: 0 6px 20px rgba(0, 115, 236, 0.12);
 }
@@ -809,6 +809,28 @@ a.tool-card:hover .tool-card-title {
   line-height: 1.25;
 }
 
+/* Section pill badge — above section headings (matches Remixer pattern) */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-azure);
+  background: rgba(0, 115, 236, 0.2);
+  padding: 0.125rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+.content-section:has(.tips-editorial) > .section-badge {
+  display: flex;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .content-section p {
   font-size: 1.125rem;
   color: var(--color-cloudy);
@@ -985,39 +1007,258 @@ a.tool-card:hover .tool-card-title {
   border-radius: 1rem;
   margin-bottom: 1.5rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: stretch;
   overflow: hidden;
 }
 
-.workflow-illustration svg {
-  width: 4rem;
-  height: 4rem;
-  opacity: 0.5;
-}
-
 .workflow-illustration-search {
-  background: linear-gradient(135deg, rgba(0, 115, 236, 0.12) 0%, rgba(0, 202, 170, 0.08) 100%);
-}
-
-.workflow-illustration-search svg {
-  color: var(--color-azure);
+  background: linear-gradient(135deg, rgba(0, 115, 236, 0.08) 0%, rgba(0, 202, 170, 0.05) 100%);
 }
 
 .workflow-illustration-reviews {
-  background: linear-gradient(135deg, rgba(245, 157, 0, 0.12) 0%, rgba(255, 74, 72, 0.06) 100%);
-}
-
-.workflow-illustration-reviews svg {
-  color: var(--color-tangerine);
+  background: linear-gradient(135deg, rgba(245, 157, 0, 0.08) 0%, rgba(255, 74, 72, 0.04) 100%);
 }
 
 .workflow-illustration-consistency {
-  background: linear-gradient(135deg, rgba(166, 68, 229, 0.12) 0%, rgba(0, 115, 236, 0.06) 100%);
+  background: linear-gradient(135deg, rgba(166, 68, 229, 0.08) 0%, rgba(0, 115, 236, 0.04) 100%);
 }
 
-.workflow-illustration-consistency svg {
-  color: var(--color-prince);
+/* --- Mock browser (robots.txt code editor) --- */
+.mock-browser {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0a0a0a;
+  border: 1px solid rgba(67, 79, 88, 0.3);
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  display: flex;
+  flex-direction: column;
+}
+
+.mock-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  background: #161616;
+  border-bottom: 1px solid rgba(67, 79, 88, 0.2);
+}
+
+.mock-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(67, 79, 88, 0.5);
+}
+
+.mock-dot:first-child { background: #ff5f57; }
+.mock-dot:nth-child(2) { background: #febc2e; }
+.mock-dot:nth-child(3) { background: #28c840; }
+
+.mock-url {
+  margin-left: 0.5rem;
+  font-size: 0.6rem;
+  color: var(--color-galactic);
+  background: rgba(67, 79, 88, 0.15);
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.25rem;
+  flex: 1;
+}
+
+.mock-code {
+  padding: 0.75rem 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mock-code-line {
+  font-size: 0.6rem;
+  line-height: 1.65;
+  white-space: nowrap;
+}
+
+.mock-code-blank {
+  height: 0.6rem;
+}
+
+.mock-comment {
+  color: var(--color-galactic);
+  font-style: italic;
+}
+
+.mock-directive {
+  color: var(--color-azure);
+}
+
+.mock-value {
+  color: var(--color-turtle);
+}
+
+.mock-value-url {
+  color: var(--color-cloudy);
+}
+
+/* --- Mock SERP result (rich snippet) --- */
+.mock-serp {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  padding: 1.25rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mock-serp-breadcrumb {
+  font-size: 0.6rem;
+  color: #70757a;
+  margin-bottom: 0.25rem;
+}
+
+.mock-serp-title {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #1a0dab;
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+}
+
+.mock-serp-stars {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  margin-bottom: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.mock-star {
+  color: #fbbc04;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.mock-star-half {
+  opacity: 0.4;
+}
+
+.mock-serp-rating {
+  font-size: 0.6rem;
+  color: #70757a;
+  margin-left: 0.2rem;
+}
+
+.mock-serp-price {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #202124;
+  margin-left: 0.35rem;
+}
+
+.mock-serp-stock {
+  font-size: 0.55rem;
+  color: #188038;
+  margin-left: 0.25rem;
+}
+
+.mock-serp-desc {
+  font-size: 0.65rem;
+  color: #4d5156;
+  line-height: 1.5;
+}
+
+/* --- Mock Core Web Vitals dashboard --- */
+.mock-vitals {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.mock-vital {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.mock-vital-ring {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.mock-vital-pass {
+  border-color: var(--color-turtle);
+  box-shadow: 0 0 16px rgba(0, 202, 170, 0.25);
+}
+
+.mock-vital-warn {
+  border-color: var(--color-tangerine);
+  box-shadow: 0 0 16px rgba(245, 157, 0, 0.25);
+}
+
+.mock-vital-value {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.mock-vital-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-cloudy);
+  letter-spacing: 0.05em;
+}
+
+.mock-vital-status {
+  font-size: 0.55rem;
+  font-weight: 500;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+}
+
+.mock-vital-good {
+  color: var(--color-turtle);
+  background: rgba(0, 202, 170, 0.12);
+}
+
+.mock-vital-needs-work {
+  color: var(--color-tangerine);
+  background: rgba(245, 157, 0, 0.12);
+}
+
+/* --- Mock responsive --- */
+@media (max-width: 480px) {
+  .mock-vital-ring {
+    width: 44px;
+    height: 44px;
+    border-width: 2px;
+  }
+
+  .mock-vital-value {
+    font-size: 0.625rem;
+  }
+
+  .mock-vitals {
+    gap: 0.75rem;
+  }
+
+  .mock-browser,
+  .mock-serp {
+    width: 92%;
+  }
 }
 
 .workflow-item h3 {
@@ -1035,9 +1276,8 @@ a.tool-card:hover .tool-card-title {
   margin: 0;
 }
 
-/* --- Section 3: Tips — single column, big number + content side by side --- */
-.content-section:has(.tips-editorial) .section-heading,
-.content-section:has(.faq-list) .section-heading {
+/* --- Section 3: Tips — timeline with gradient vertical line --- */
+.content-section:has(.tips-editorial) .section-heading {
   text-align: center;
   margin-bottom: 3.5rem;
 }
@@ -1050,6 +1290,23 @@ a.tool-card:hover .tool-card-title {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Timeline variant — gradient vertical line */
+.tips-timeline {
+  position: relative;
+  padding-left: 4.5rem;
+}
+
+.tips-timeline::before {
+  content: '';
+  position: absolute;
+  left: 1.625rem;
+  top: 1.75rem;
+  bottom: 1.75rem;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--color-azure), var(--color-prince));
+  border-radius: 999px;
 }
 
 .tip-row {
@@ -1077,6 +1334,36 @@ a.tool-card:hover .tool-card-title {
   flex-shrink: 0;
   width: 3.5rem;
   text-align: center;
+}
+
+/* Timeline circle numbers — replace watermark style */
+.tips-timeline .tip-row {
+  position: relative;
+  padding-left: 0;
+  border-bottom: none;
+  gap: 1rem;
+}
+
+.tips-timeline .tip-row-number {
+  position: absolute;
+  left: -4.5rem;
+  top: 1.75rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-galactic);
+  background: var(--color-oblivion);
+  border: 2px solid var(--color-metal);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.tips-timeline .tip-row:first-child .tip-row-number {
+  top: 0;
 }
 
 .tip-row-content {
@@ -1146,16 +1433,36 @@ a.tool-card:hover .tool-card-title {
   font-size: 1.5rem;
   font-weight: 300;
   color: var(--color-galactic);
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: rotate(0deg);
+  width: 1.5rem;
+  text-align: center;
+  line-height: 1;
 }
 
 .faq-item[open] summary::after {
   content: '−';
+  transform: rotate(0deg);
   color: var(--color-azure);
 }
 
 .faq-item summary:hover {
   color: var(--color-azure);
+}
+
+@keyframes faq-open {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq-item[open] .faq-answer {
+  animation: faq-open 0.3s ease-in-out;
 }
 
 .faq-answer {
@@ -1173,6 +1480,34 @@ a.tool-card:hover .tool-card-title {
 
 .faq-answer a:hover {
   color: var(--color-white);
+}
+
+/* --- FAQ split layout (heading left, accordion right) --- */
+.faq-split {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.faq-split-heading {
+  flex-shrink: 0;
+}
+
+.faq-split-heading .section-heading {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.faq-split-heading .section-badge {
+  display: inline-flex;
+}
+
+.faq-split-items {
+  flex: 1;
+}
+
+.faq-split-items .faq-list {
+  max-width: none;
 }
 
 /* --- Related Articles --- */
@@ -1279,12 +1614,13 @@ a.tool-card:hover .tool-card-title {
   margin-top: 3rem;
 }
 
-/* --- CTA banner --- */
+/* --- CTA banner — dark aurora with blurred gradient orbs --- */
 .cta-banner {
   margin-top: 6rem;
   padding: 3.5rem 2.5rem;
-  background: var(--color-azure);
-  border-radius: 1rem;
+  background: var(--color-abyss);
+  border: 1px solid rgba(67, 79, 88, 0.3);
+  border-radius: 1.25rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -1293,11 +1629,27 @@ a.tool-card:hover .tool-card-title {
 .cta-banner::before {
   content: '';
   position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 60%;
-  height: 200%;
-  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: rgba(0, 115, 236, 0.15);
+  filter: blur(200px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.cta-banner::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: rgba(166, 68, 229, 0.1);
+  filter: blur(150px);
+  left: 60%;
+  top: 30%;
   pointer-events: none;
 }
 
@@ -1308,15 +1660,24 @@ a.tool-card:hover .tool-card-title {
   line-height: 1.2;
   margin-bottom: 1rem;
   position: relative;
+  z-index: 1;
+}
+
+.cta-banner-heading .accent {
+  background: linear-gradient(135deg, var(--color-azure), var(--color-prince));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .cta-banner p {
   font-size: 1.125rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-cloudy);
   line-height: 1.55;
   margin: 0 auto 2rem;
   max-width: 50ch;
   position: relative;
+  z-index: 1;
 }
 
 .cta-banner-button {
@@ -1324,30 +1685,50 @@ a.tool-card:hover .tool-card-title {
   align-items: center;
   gap: 0.5rem;
   padding: 0.875rem 2rem;
-  background: #fff;
-  color: var(--color-azure);
+  background: var(--color-azure);
+  color: #fff;
   font-size: 1.0625rem;
   font-weight: 600;
   text-decoration: none;
-  border-radius: 2rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 4rem;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   position: relative;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  box-shadow: 0 2px 8px rgba(0, 115, 236, 0.2);
 }
 
 .cta-banner-button:hover {
   transform: scale(1.03);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 115, 236, 0.3);
 }
 
 .cta-banner-button svg {
   width: 1.125rem;
   height: 1.125rem;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease-in-out;
 }
 
 .cta-banner-button:hover svg {
   transform: translateX(2px);
+}
+
+.cta-banner-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--color-galactic);
+  position: relative;
+  z-index: 1;
+}
+
+.cta-banner-trust svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-turtle);
+  flex-shrink: 0;
 }
 
 /* Desktop — content sections */
@@ -1361,8 +1742,8 @@ a.tool-card:hover .tool-card-title {
   }
 
   .section-heading {
-    font-size: 3rem;
-    line-height: 1.25;
+    font-size: 4rem;
+    line-height: 1.2;
     margin-bottom: 3rem;
   }
 
@@ -1370,11 +1751,24 @@ a.tool-card:hover .tool-card-title {
     font-size: 1.25rem;
   }
 
-  /* Audience: side-by-side */
+  /* Audience: side-by-side with gradient divider */
   .audience-split {
     flex-direction: row;
     gap: 6rem;
     align-items: flex-start;
+    position: relative;
+  }
+
+  .audience-split::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    border-radius: 999px;
+    background: linear-gradient(to bottom, var(--color-azure), var(--color-prince));
+    top: 0;
+    bottom: 0;
+    left: calc(320px + 3rem);
+    opacity: 1;
   }
 
   .audience-intro {
@@ -1441,7 +1835,36 @@ a.tool-card:hover .tool-card-title {
     font-size: 1.0625rem;
   }
 
-  /* FAQ */
+  /* Timeline desktop */
+  .tips-timeline {
+    padding-left: 5.5rem;
+  }
+
+  .tips-timeline::before {
+    left: 1.75rem;
+  }
+
+  .tips-timeline .tip-row-number {
+    left: -5.5rem;
+  }
+
+  /* FAQ — split layout */
+  .faq-split {
+    flex-direction: row;
+    gap: 4rem;
+  }
+
+  .faq-split-heading {
+    position: sticky;
+    top: 2rem;
+    width: 320px;
+    flex-shrink: 0;
+  }
+
+  .faq-split-heading .section-heading {
+    font-size: 3rem;
+  }
+
   .faq-item summary {
     font-size: 1.25rem;
     padding: 1.75rem 0;
@@ -1466,14 +1889,14 @@ a.tool-card:hover .tool-card-title {
     font-size: 1.375rem;
   }
 
-  /* CTA */
+  /* CTA — aurora */
   .cta-banner {
-    padding: 4.5rem 4rem;
-    border-radius: 1.5rem;
+    padding: 5rem 4rem;
+    border-radius: 2rem;
   }
 
   .cta-banner-heading {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
   }
 
   .cta-banner p {
@@ -1514,8 +1937,38 @@ a.tool-card:hover .tool-card-title {
     width: 2.5rem;
   }
 
+  /* Timeline mobile */
+  .tips-timeline {
+    padding-left: 3.5rem;
+  }
+
+  .tips-timeline::before {
+    left: 1.125rem;
+    width: 4px;
+  }
+
+  .tips-timeline .tip-row-number {
+    left: -3.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.75rem;
+  }
+
+  /* CTA mobile */
   .cta-banner {
     padding: 2.5rem 1.5rem;
+  }
+
+  .cta-banner::before {
+    width: 300px;
+    height: 300px;
+    filter: blur(100px);
+  }
+
+  .cta-banner::after {
+    width: 200px;
+    height: 200px;
+    filter: blur(80px);
   }
 
   .cta-banner-heading {

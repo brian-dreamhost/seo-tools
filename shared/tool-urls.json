@@ -1,0 +1,68 @@
+{
+  "_comment": "Single source of truth for all tool and navigation URLs. Update values here, then run: node scripts/update-urls.js",
+
+  "base": {
+    "hub": "https://seo-tools-tau.vercel.app/",
+    "seo": "https://seo-tools-tau.vercel.app/seo/",
+    "social-media": "https://seo-tools-tau.vercel.app/social-media/",
+    "copywriting": "https://seo-tools-tau.vercel.app/copywriting/",
+    "email-marketing": "https://seo-tools-tau.vercel.app/email-marketing/",
+    "analytics": "https://seo-tools-tau.vercel.app/analytics/",
+    "design": "https://seo-tools-tau.vercel.app/design/",
+    "local-business": "https://seo-tools-tau.vercel.app/local-business/",
+    "legal-compliance": "https://seo-tools-tau.vercel.app/legal-compliance/",
+    "advertising": "https://seo-tools-tau.vercel.app/advertising/"
+  },
+
+  "tools": {
+    "schema-markup-generator": "https://schema-generator-ochre.vercel.app/",
+    "metadata-preview-tool": "https://metadata-preview-tool.vercel.app/",
+    "core-web-vitals-checker": "https://core-web-vitals-checker.vercel.app/",
+    "robots-txt-generator": "https://robots-txt-generator-eosin.vercel.app/",
+    "ai-crawler-control-center": "https://ai-crawler-control-center.vercel.app/",
+    "redirect-map-builder": "https://redirect-map-builder.vercel.app/",
+    "ai-search-snippet-previewer": "https://ai-search-snippet-previewer.vercel.app/",
+    "content-readability-citability-scorer": "https://content-readability-citability-scor.vercel.app/",
+    "xml-sitemap-generator": "https://xml-sitemap-generator-pi.vercel.app/",
+
+    "social-media-post-previewer": "https://social-media-post-previewer-blond.vercel.app/",
+    "hashtag-generator": "https://hashtag-generator-self.vercel.app/",
+    "social-media-bio-generator": "https://social-media-bio-generator.vercel.app/",
+    "social-image-resizer": "https://social-image-resizer-nu.vercel.app/",
+    "open-graph-debugger": "https://open-graph-debugger.vercel.app/",
+    "platform-character-counter": "https://platform-character-counter.vercel.app/",
+    "engagement-rate-calculator": "https://engagement-rate-calculator.vercel.app/",
+    "best-time-to-post": "https://best-time-to-post.vercel.app/",
+    "social-media-caption-generator": "https://social-media-caption-generator.vercel.app/",
+
+    "copy-readability-optimizer": "https://copy-readability-optimizer.vercel.app/",
+    "tone-voice-analyzer": "https://tone-voice-analyzer.vercel.app/",
+    "headline-analyzer": "https://headline-analyzer-gold.vercel.app/",
+    "cta-generator": "https://cta-generator-nine.vercel.app/",
+    "product-description-builder": "https://product-description-builder.vercel.app/",
+    "word-character-counter": "https://word-character-counter-tau.vercel.app/",
+    "before-after-copy-comparer": "https://before-after-copy-comparer.vercel.app/",
+    "value-proposition-generator": "https://value-proposition-generator.vercel.app/",
+    "story-framework-generator": "https://story-framework-generator.vercel.app/",
+
+    "email-subject-line-tester": "https://email-subject-line-tester.vercel.app/",
+    "email-signature-generator": "https://email-signature-generator-sooty.vercel.app/",
+    "email-deliverability-checker": "https://email-deliverability-checker-seven.vercel.app/",
+    "plain-text-email-formatter": "https://plain-text-email-formatter.vercel.app/",
+    "email-preview-renderer": "https://email-preview-renderer.vercel.app/",
+    "email-preheader-preview": "https://email-preheader-preview.vercel.app/",
+    "email-cta-button-generator": "https://email-cta-button-generator.vercel.app/",
+    "email-metrics-calculator": "https://email-metrics-calculator.vercel.app/",
+    "email-list-growth-calculator": "https://email-list-growth-calculator.vercel.app/",
+
+    "google-business-profile-audit": "https://google-business-profile-audit.vercel.app/",
+    "review-response-generator": "https://review-response-generator-beta.vercel.app/",
+    "review-request-template-builder": "https://review-request-template-builder.vercel.app/",
+    "local-business-schema-generator": "https://local-business-schema-generator.vercel.app/",
+    "local-seo-keyword-generator": "https://local-seo-keyword-generator.vercel.app/",
+    "local-business-description-writer": "https://local-business-description-writer.vercel.app/",
+    "service-area-map-planner": "https://service-area-map-planner.vercel.app/",
+    "nap-consistency-checker": "https://nap-consistency-checker.vercel.app/",
+    "local-competitor-comparison": "https://local-competitor-comparison.vercel.app/"
+  }
+}
