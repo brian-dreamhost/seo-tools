@@ -883,10 +883,10 @@
           return;
         }
 
-        // Hide category header when a specific category is selected
+        // Always show category header
         var header = section.querySelector('.category-header');
         if (header) {
-          header.style.display = singleCategory ? 'none' : '';
+          header.style.display = '';
         }
 
         var cards = section.querySelectorAll('.tool-card');
