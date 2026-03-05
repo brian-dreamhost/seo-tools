@@ -137,6 +137,43 @@
       </div>
     </div>
 
+
+    <div class="suggestion-section">
+      <h2>What Should We Build Next?</h2>
+      <p>We love building these tools, and helping you grow your business is what drives everything we do. If there's something that would make your advertising workflow easier, tell us&nbsp;&mdash; we're&nbsp;listening.</p>
+      <button class="suggestion-btn" onclick="document.getElementById('suggestionModal').classList.add('active')" aria-haspopup="dialog">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+        Suggest a Tool
+      </button>
+    </div>
+
+    <div class="suggestion-overlay" id="suggestionModal" role="dialog" aria-modal="true" aria-label="Suggest a tool">
+      <div class="suggestion-modal">
+        <button class="suggestion-modal-close" onclick="document.getElementById('suggestionModal').classList.remove('active')" aria-label="Close">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+        </button>
+        <h3>Suggest a Tool</h3>
+        <p class="suggestion-modal-sub">Every idea gets read by a real person on our&nbsp;team.</p>
+        <form action="mailto:brian.glassman@dreamhost.com?subject=New DreamHost Free Tool Request" method="POST" enctype="text/plain">
+          <label for="suggestName">First Name</label>
+          <input type="text" id="suggestName" name="name" placeholder="Your first name" required>
+          <label for="suggestEmail">Email</label>
+          <input type="email" id="suggestEmail" name="email" placeholder="you@example.com" required>
+          <label for="suggestIdea">Your Idea</label>
+          <textarea id="suggestIdea" name="idea" placeholder="Describe the tool you'd like to see..." required></textarea>
+          <button type="submit" class="suggestion-modal-submit">Submit Suggestion</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var overlay=document.getElementById('suggestionModal');
+      overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.classList.remove('active')});
+      document.addEventListener('keydown',function(e){if(e.key==='Escape')overlay.classList.remove('active')});
+    })();
+    </script>
+
     <!-- Content sections -->
     <div class="category-content">
 
@@ -203,21 +240,89 @@
         <div class="workflows">
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-search">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
+              <div class="mock-ad-preview">
+                <div class="mock-ad-label"><span>Ad</span> &middot; www.example.com</div>
+                <div class="mock-ad-headline">Premium Widgets | Free Shipping Today</div>
+                <div class="mock-ad-url">www.example.com/widgets <span class="mock-ad-url-arrow"></span></div>
+                <div class="mock-ad-description">Shop our top-rated collection of premium widgets. 30-day returns. Trusted by 10,000+ customers nationwide. Order now and save 20%.</div>
+                <div class="mock-ad-extensions">
+                  <span class="mock-ad-extension">Free Returns</span>
+                  <span class="mock-ad-extension">Price Match</span>
+                  <span class="mock-ad-extension">24/7 Support</span>
+                </div>
+              </div>
             </div>
             <h3>Preview Before You Publish</h3>
             <p>Google Ads gives you 15 headline slots and 4 descriptions, then mixes and matches them automatically. The result? Combinations you never intended. The Google Ads Preview Tool (coming soon) will show you exactly how your responsive search ads will render across devices before you spend a cent — catching awkward pairings, truncated headlines, and weak CTAs before they cost you clicks.</p>
           </div>
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-reviews">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+              <div class="mock-roas">
+                <div class="mock-roas-label">Return on Ad Spend</div>
+                <div class="mock-roas-value">3.4x</div>
+                <div class="mock-roas-metrics">
+                  <div class="mock-roas-metric">
+                    <span class="mock-roas-metric-value">$2,500</span>
+                    <span class="mock-roas-metric-label">Ad Spend</span>
+                  </div>
+                  <div class="mock-roas-metric">
+                    <span class="mock-roas-metric-value">$8,500</span>
+                    <span class="mock-roas-metric-label">Revenue</span>
+                  </div>
+                  <div class="mock-roas-metric">
+                    <span class="mock-roas-metric-value">$6,000</span>
+                    <span class="mock-roas-metric-label">Profit</span>
+                  </div>
+                </div>
+                <div class="mock-roas-bar">
+                  <div class="mock-roas-bar-cost"></div>
+                  <div class="mock-roas-bar-profit"></div>
+                </div>
+                <div class="mock-roas-bar-legend">
+                  <span class="mock-roas-legend-cost">$2,500 cost</span>
+                  <span class="mock-roas-legend-profit">$6,000 profit</span>
+                </div>
+              </div>
             </div>
             <h3>Calculate Your Return</h3>
             <p>Most small businesses don't know if their ads are profitable until it's too late. The ROAS Calculator (coming soon) will break down your true return by campaign, factoring in ad spend, revenue, and cost per acquisition. Run side-by-side comparisons across channels to see which ones deserve more budget and which ones are quietly bleeding money.</p>
           </div>
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-consistency">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75" /></svg>
+              <div class="mock-audit">
+                <div class="mock-audit-checklist">
+                  <div class="mock-audit-item">
+                    <span class="mock-audit-check mock-audit-check-pass">&#10003;</span>
+                    Hero headline
+                  </div>
+                  <div class="mock-audit-item">
+                    <span class="mock-audit-check mock-audit-check-pass">&#10003;</span>
+                    Single CTA
+                  </div>
+                  <div class="mock-audit-item">
+                    <span class="mock-audit-check mock-audit-check-pass">&#10003;</span>
+                    Social proof
+                  </div>
+                  <div class="mock-audit-item">
+                    <span class="mock-audit-check mock-audit-check-pass">&#10003;</span>
+                    Page speed: 2.1s
+                  </div>
+                  <div class="mock-audit-item">
+                    <span class="mock-audit-check mock-audit-check-pass">&#10003;</span>
+                    Mobile responsive
+                  </div>
+                  <div class="mock-audit-item">
+                    <span class="mock-audit-check mock-audit-check-fail">&#10007;</span>
+                    Form above fold
+                  </div>
+                </div>
+                <div class="mock-audit-score">
+                  <div class="mock-audit-ring">
+                    <span class="mock-audit-ring-value">5/6</span>
+                  </div>
+                  <span class="mock-audit-score-label">Score</span>
+                </div>
+              </div>
             </div>
             <h3>Optimize Your Landing Pages</h3>
             <p>Sending paid traffic to a slow, unfocused page is like paying for a storefront and leaving the door locked. The Landing Page Checklist Auditor (coming soon) will score your page against conversion best practices: load speed, message match, CTA clarity, mobile layout, and trust signals. Fix the page before you fix the ad — most conversion problems start after the click.</p>
@@ -348,9 +453,7 @@
           Get Started
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
         </a>
-      </div>
-
-      <div class="page-last-updated">Last updated: March 5, 2026</div>
+      </div>      <div class="page-last-updated">Last updated: March 5, 2026</div>
 
     </div>
   </main>

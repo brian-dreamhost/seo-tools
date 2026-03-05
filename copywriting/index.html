@@ -180,6 +180,43 @@
       </a>
     </div>
 
+
+    <div class="suggestion-section">
+      <h2>What Should We Build Next?</h2>
+      <p>We love building these tools, and helping you grow your business is what drives everything we do. If there's something that would make your copywriting workflow easier, tell us&nbsp;&mdash; we're&nbsp;listening.</p>
+      <button class="suggestion-btn" onclick="document.getElementById('suggestionModal').classList.add('active')" aria-haspopup="dialog">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+        Suggest a Tool
+      </button>
+    </div>
+
+    <div class="suggestion-overlay" id="suggestionModal" role="dialog" aria-modal="true" aria-label="Suggest a tool">
+      <div class="suggestion-modal">
+        <button class="suggestion-modal-close" onclick="document.getElementById('suggestionModal').classList.remove('active')" aria-label="Close">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+        </button>
+        <h3>Suggest a Tool</h3>
+        <p class="suggestion-modal-sub">Every idea gets read by a real person on our&nbsp;team.</p>
+        <form action="mailto:brian.glassman@dreamhost.com?subject=New DreamHost Free Tool Request" method="POST" enctype="text/plain">
+          <label for="suggestName">First Name</label>
+          <input type="text" id="suggestName" name="name" placeholder="Your first name" required>
+          <label for="suggestEmail">Email</label>
+          <input type="email" id="suggestEmail" name="email" placeholder="you@example.com" required>
+          <label for="suggestIdea">Your Idea</label>
+          <textarea id="suggestIdea" name="idea" placeholder="Describe the tool you'd like to see..." required></textarea>
+          <button type="submit" class="suggestion-modal-submit">Submit Suggestion</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var overlay=document.getElementById('suggestionModal');
+      overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.classList.remove('active')});
+      document.addEventListener('keydown',function(e){if(e.key==='Escape')overlay.classList.remove('active')});
+    })();
+    </script>
+
     <!-- Content sections -->
     <div class="category-content">
 
@@ -246,21 +283,53 @@
         <div class="workflows">
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-search">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0-3.75-3.75M17.25 21l3.75-3.75" /></svg>
+              <div class="mock-headline-score">
+                <div class="mock-headline-score-header">
+                  <span class="mock-headline-score-label">Headline Score</span>
+                  <span class="mock-headline-score-value">78</span>
+                </div>
+                <div class="mock-headline-score-text">7 Ways to Double Your Traffic Without Paid Ads</div>
+                <div class="mock-headline-score-divider"></div>
+                <div class="mock-headline-score-bars">
+                  <div class="mock-headline-bar-row"><span class="mock-headline-bar-label">Word Balance</span><div class="mock-headline-bar-track"><div class="mock-headline-bar-fill mock-headline-bar-fill-balance" style="width:82%"></div></div><span class="mock-headline-bar-pct">82%</span></div>
+                  <div class="mock-headline-bar-row"><span class="mock-headline-bar-label">Length</span><div class="mock-headline-bar-track"><div class="mock-headline-bar-fill mock-headline-bar-fill-length" style="width:90%"></div></div><span class="mock-headline-bar-pct">90%</span></div>
+                  <div class="mock-headline-bar-row"><span class="mock-headline-bar-label">Sentiment</span><div class="mock-headline-bar-track"><div class="mock-headline-bar-fill mock-headline-bar-fill-sentiment" style="width:65%"></div></div><span class="mock-headline-bar-pct">65%</span></div>
+                  <div class="mock-headline-bar-row"><span class="mock-headline-bar-label">Power Words</span><div class="mock-headline-bar-track"><div class="mock-headline-bar-fill mock-headline-bar-fill-power" style="width:71%"></div></div><span class="mock-headline-bar-pct">71%</span></div>
+                </div>
+              </div>
             </div>
             <h3>Write Headlines That Get Clicks</h3>
             <p>Headlines determine whether anyone reads the rest. As David Ogilvy wrote in <em>Confessions of an Advertising Man</em>, on average five times as many people read the headline as read the body copy — meaning your headline is worth 80 cents of every dollar you spend on a piece of content. Run yours through the <a data-tool="headline-analyzer" href="https://headline-analyzer-gold.vercel.app/" target="_blank" rel="noopener">Headline Analyzer</a> to score word balance, sentiment, and length. Then check readability with the <a data-tool="copy-readability-optimizer" href="https://copy-readability-optimizer.vercel.app/" target="_blank" rel="noopener">Readability Optimizer</a> to make sure the body copy holds their attention once they click.</p>
           </div>
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-reviews">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" /></svg>
+              <div class="mock-product-desc">
+                <div class="mock-product-desc-header">AIDA Framework</div>
+                <div class="mock-product-desc-row"><span class="mock-product-desc-pill mock-product-desc-pill-a">Attention</span><span class="mock-product-desc-text">Tired of website builders that slow you down?</span></div>
+                <div class="mock-product-desc-row"><span class="mock-product-desc-pill mock-product-desc-pill-i">Interest</span><span class="mock-product-desc-text">Our drag-and-drop editor loads 3x faster than WordPress with zero coding required.</span></div>
+                <div class="mock-product-desc-row"><span class="mock-product-desc-pill mock-product-desc-pill-d">Desire</span><span class="mock-product-desc-text">Join 50,000+ small businesses already saving 10 hours/week on site management.</span></div>
+                <div class="mock-product-desc-row"><span class="mock-product-desc-pill mock-product-desc-pill-action">Action</span><span class="mock-product-desc-text"><span class="mock-product-desc-cta">Start Free Trial</span></span></div>
+              </div>
             </div>
             <h3>Build Product Descriptions That Sell</h3>
             <p>Great product copy follows a structure. <a href="https://www.nngroup.com/articles/ecommerce-improvements/" target="_blank" rel="noopener">Nielsen Norman Group research</a> found that the majority of observed e-commerce purchase failures were caused by poor content — incomplete descriptions, missing details, or unclear product information. Use the <a data-tool="product-description-builder" href="https://product-description-builder.vercel.app/" target="_blank" rel="noopener">Product Description Builder</a> to generate structured copy using AIDA or PAS, then add a CTA from the <a data-tool="cta-generator" href="https://cta-generator-nine.vercel.app/" target="_blank" rel="noopener">CTA Generator</a> that matches the buying stage.</p>
           </div>
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-consistency">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" /></svg>
+              <div class="mock-tone-analyzer">
+                <div class="mock-tone-header">Voice Profile</div>
+                <div class="mock-tone-bars">
+                  <div class="mock-tone-row"><span class="mock-tone-label">Professional</span><div class="mock-tone-track"><div class="mock-tone-fill" style="width:85%"></div></div><span class="mock-tone-pct">85%</span></div>
+                  <div class="mock-tone-row"><span class="mock-tone-label">Friendly</span><div class="mock-tone-track"><div class="mock-tone-fill" style="width:72%"></div></div><span class="mock-tone-pct">72%</span></div>
+                  <div class="mock-tone-row"><span class="mock-tone-label">Authoritative</span><div class="mock-tone-track"><div class="mock-tone-fill" style="width:68%"></div></div><span class="mock-tone-pct">68%</span></div>
+                  <div class="mock-tone-row"><span class="mock-tone-label">Casual</span><div class="mock-tone-track"><div class="mock-tone-fill" style="width:25%"></div></div><span class="mock-tone-pct">25%</span></div>
+                </div>
+                <div class="mock-tone-divider"></div>
+                <div class="mock-tone-summary">
+                  <span class="mock-tone-badge">92% match</span>
+                  <span class="mock-tone-match">Consistent with brand voice</span>
+                </div>
+              </div>
             </div>
             <h3>Find Your Brand Voice</h3>
             <p>Inconsistent tone makes your brand feel like five different people wrote it — because they probably did. <a href="https://info.marq.com/resources/report/brand-consistency" target="_blank" rel="noopener">Research by Marq (formerly Lucidpress)</a> found that consistent brand presentation can increase revenue by up to 23%. Paste your strongest content into the <a data-tool="tone-voice-analyzer" href="https://tone-voice-analyzer.vercel.app/" target="_blank" rel="noopener">Tone &amp; Voice Analyzer</a> to create a voice profile, then use it as a checklist every time someone new writes for your brand.</p>
@@ -391,9 +460,7 @@
           Get Started
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
         </a>
-      </div>
-
-      <div class="page-last-updated">Last updated: March 5, 2026</div>
+      </div>      <div class="page-last-updated">Last updated: March 5, 2026</div>
 
     </div>
   </main>

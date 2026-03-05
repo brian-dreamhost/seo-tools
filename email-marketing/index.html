@@ -181,6 +181,43 @@
       </a>
     </div>
 
+
+    <div class="suggestion-section">
+      <h2>What Should We Build Next?</h2>
+      <p>We love building these tools, and helping you grow your business is what drives everything we do. If there's something that would make your email marketing workflow easier, tell us&nbsp;&mdash; we're&nbsp;listening.</p>
+      <button class="suggestion-btn" onclick="document.getElementById('suggestionModal').classList.add('active')" aria-haspopup="dialog">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+        Suggest a Tool
+      </button>
+    </div>
+
+    <div class="suggestion-overlay" id="suggestionModal" role="dialog" aria-modal="true" aria-label="Suggest a tool">
+      <div class="suggestion-modal">
+        <button class="suggestion-modal-close" onclick="document.getElementById('suggestionModal').classList.remove('active')" aria-label="Close">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+        </button>
+        <h3>Suggest a Tool</h3>
+        <p class="suggestion-modal-sub">Every idea gets read by a real person on our&nbsp;team.</p>
+        <form action="mailto:brian.glassman@dreamhost.com?subject=New DreamHost Free Tool Request" method="POST" enctype="text/plain">
+          <label for="suggestName">First Name</label>
+          <input type="text" id="suggestName" name="name" placeholder="Your first name" required>
+          <label for="suggestEmail">Email</label>
+          <input type="email" id="suggestEmail" name="email" placeholder="you@example.com" required>
+          <label for="suggestIdea">Your Idea</label>
+          <textarea id="suggestIdea" name="idea" placeholder="Describe the tool you'd like to see..." required></textarea>
+          <button type="submit" class="suggestion-modal-submit">Submit Suggestion</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var overlay=document.getElementById('suggestionModal');
+      overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.classList.remove('active')});
+      document.addEventListener('keydown',function(e){if(e.key==='Escape')overlay.classList.remove('active')});
+    })();
+    </script>
+
     <!-- Content sections -->
     <div class="category-content">
 
@@ -247,21 +284,119 @@
         <div class="workflows">
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-search">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+              <div class="mock-inbox">
+                <div class="mock-inbox-toolbar">
+                  <div class="mock-inbox-icon"></div>
+                  <span class="mock-inbox-title">Inbox</span>
+                  <span class="mock-inbox-count">3 unread</span>
+                </div>
+                <div class="mock-inbox-rows">
+                  <div class="mock-inbox-row mock-inbox-row-active">
+                    <div class="mock-inbox-dot"></div>
+                    <div class="mock-inbox-row-body">
+                      <div class="mock-inbox-sender">Acme Store</div>
+                      <div class="mock-inbox-subject">Your order ships tomorrow</div>
+                    </div>
+                    <span class="mock-inbox-badge mock-inbox-badge-high">38% open</span>
+                  </div>
+                  <div class="mock-inbox-row">
+                    <div class="mock-inbox-dot"></div>
+                    <div class="mock-inbox-row-body">
+                      <div class="mock-inbox-sender">Acme Store</div>
+                      <div class="mock-inbox-subject">[First], your cart is waiting</div>
+                    </div>
+                    <span class="mock-inbox-badge mock-inbox-badge-mid">31% open</span>
+                  </div>
+                  <div class="mock-inbox-row mock-inbox-row-faded">
+                    <div class="mock-inbox-dot"></div>
+                    <div class="mock-inbox-row-body">
+                      <div class="mock-inbox-sender">Acme Store</div>
+                      <div class="mock-inbox-subject">Weekly newsletter #47</div>
+                    </div>
+                    <span class="mock-inbox-badge mock-inbox-badge-low">12% open</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <h3>Craft Emails That Get Opened</h3>
             <p>According to <a href="https://www.campaignmonitor.com/resources/guides/email-marketing-benchmarks/" target="_blank" rel="noopener">industry benchmark data</a>, the average email open rate is 21.5% — meaning nearly 4 out of 5 emails go unread. Your subject line and preheader are the only things subscribers see before deciding. Test both with the <a data-tool="email-subject-line-tester" href="https://email-subject-line-tester.vercel.app/" target="_blank" rel="noopener">Subject Line Tester</a> and <a data-tool="email-preheader-preview" href="https://email-preheader-preview.vercel.app/" target="_blank" rel="noopener">Preheader Preview</a> before every send.</p>
           </div>
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-reviews">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" /></svg>
+              <div class="mock-clients">
+                <div class="mock-client mock-client-gmail">
+                  <div class="mock-client-tab">
+                    <div class="mock-client-dot mock-client-dot-gmail"></div>
+                    <span class="mock-client-label">Gmail</span>
+                  </div>
+                  <div class="mock-client-body">
+                    <div class="mock-client-header-bar"></div>
+                    <div class="mock-client-line mock-client-line-long"></div>
+                    <div class="mock-client-line mock-client-line-med"></div>
+                    <div class="mock-client-line mock-client-line-short"></div>
+                    <div class="mock-client-spacer"></div>
+                    <div class="mock-client-btn"></div>
+                  </div>
+                </div>
+                <div class="mock-client mock-client-outlook">
+                  <div class="mock-client-tab">
+                    <div class="mock-client-dot mock-client-dot-outlook"></div>
+                    <span class="mock-client-label">Outlook</span>
+                  </div>
+                  <div class="mock-client-body">
+                    <div class="mock-client-header-bar"></div>
+                    <div class="mock-client-line mock-client-line-long"></div>
+                    <div class="mock-client-line mock-client-line-long"></div>
+                    <div class="mock-client-line mock-client-line-med"></div>
+                    <div class="mock-client-spacer"></div>
+                    <div class="mock-client-btn"></div>
+                  </div>
+                </div>
+                <div class="mock-client mock-client-apple">
+                  <div class="mock-client-tab">
+                    <div class="mock-client-dot mock-client-dot-apple"></div>
+                    <span class="mock-client-label">Apple Mail</span>
+                  </div>
+                  <div class="mock-client-body">
+                    <div class="mock-client-header-bar"></div>
+                    <div class="mock-client-line mock-client-line-med"></div>
+                    <div class="mock-client-line mock-client-line-short"></div>
+                    <div class="mock-client-line mock-client-line-long"></div>
+                    <div class="mock-client-spacer"></div>
+                    <div class="mock-client-btn"></div>
+                  </div>
+                </div>
+              </div>
             </div>
             <h3>Design for Every Inbox</h3>
             <p>An email that looks perfect in Gmail can break completely in Outlook. <a href="https://www.litmus.com/email-client-market-share" target="_blank" rel="noopener">Email client market share data</a> shows that Apple Mail and Gmail alone account for over 80% of all email opens, with Outlook dominating corporate environments. Use the <a data-tool="email-preview-renderer" href="https://email-preview-renderer.vercel.app/" target="_blank" rel="noopener">Email Preview Renderer</a> to catch rendering issues, the <a data-tool="email-cta-button-generator" href="https://email-cta-button-generator.vercel.app/" target="_blank" rel="noopener">CTA Button Generator</a> for bulletproof buttons with Outlook VML, and the <a data-tool="plain-text-email-formatter" href="https://plain-text-email-formatter.vercel.app/" target="_blank" rel="noopener">Plain Text Formatter</a> for clients that block HTML.</p>
           </div>
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-consistency">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" /></svg>
+              <div class="mock-growth">
+                <div class="mock-growth-chart">
+                  <div class="mock-growth-area"></div>
+                  <div class="mock-growth-line"></div>
+                  <div class="mock-growth-dot" style="right:4%;bottom:calc(70% * 0.97)"></div>
+                </div>
+                <div class="mock-growth-axis">
+                  <span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span>
+                </div>
+                <div class="mock-growth-metrics">
+                  <div class="mock-growth-metric">
+                    <span class="mock-growth-metric-value">2,847</span>
+                    <span class="mock-growth-metric-label">Subscribers</span>
+                  </div>
+                  <div class="mock-growth-metric">
+                    <span class="mock-growth-metric-value mock-growth-metric-value-turtle">+12.3%/mo</span>
+                    <span class="mock-growth-metric-label">Growth</span>
+                  </div>
+                  <div class="mock-growth-metric">
+                    <span class="mock-growth-metric-value mock-growth-metric-value-tangerine">2.1%</span>
+                    <span class="mock-growth-metric-label">Churn</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <h3>Track and Grow Your List</h3>
             <p>Your list is either growing or decaying — there's no steady state. <a href="https://www.zerobounce.net/email-list-decay" target="_blank" rel="noopener">Industry research</a> shows email lists degrade by 22–28% every year through unsubscribes, bounces, and abandoned addresses. Use the <a data-tool="email-metrics-calculator" href="https://email-metrics-calculator.vercel.app/" target="_blank" rel="noopener">Metrics Calculator</a> to benchmark your performance against industry averages, then model growth scenarios with the <a data-tool="email-list-growth-calculator" href="https://email-list-growth-calculator.vercel.app/" target="_blank" rel="noopener">List Growth Calculator</a> to set realistic targets.</p>
@@ -392,9 +527,7 @@
           Get Started
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
         </a>
-      </div>
-
-      <div class="page-last-updated">Last updated: March 5, 2026</div>
+      </div>      <div class="page-last-updated">Last updated: March 5, 2026</div>
 
     </div>
   </main>

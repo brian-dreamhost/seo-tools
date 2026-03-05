@@ -180,6 +180,43 @@
       </a>
     </div>
 
+
+    <div class="suggestion-section">
+      <h2>What Should We Build Next?</h2>
+      <p>We love building these tools, and helping you grow your business is what drives everything we do. If there's something that would make your local business workflow easier, tell us&nbsp;&mdash; we're&nbsp;listening.</p>
+      <button class="suggestion-btn" onclick="document.getElementById('suggestionModal').classList.add('active')" aria-haspopup="dialog">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+        Suggest a Tool
+      </button>
+    </div>
+
+    <div class="suggestion-overlay" id="suggestionModal" role="dialog" aria-modal="true" aria-label="Suggest a tool">
+      <div class="suggestion-modal">
+        <button class="suggestion-modal-close" onclick="document.getElementById('suggestionModal').classList.remove('active')" aria-label="Close">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+        </button>
+        <h3>Suggest a Tool</h3>
+        <p class="suggestion-modal-sub">Every idea gets read by a real person on our&nbsp;team.</p>
+        <form action="mailto:brian.glassman@dreamhost.com?subject=New DreamHost Free Tool Request" method="POST" enctype="text/plain">
+          <label for="suggestName">First Name</label>
+          <input type="text" id="suggestName" name="name" placeholder="Your first name" required>
+          <label for="suggestEmail">Email</label>
+          <input type="email" id="suggestEmail" name="email" placeholder="you@example.com" required>
+          <label for="suggestIdea">Your Idea</label>
+          <textarea id="suggestIdea" name="idea" placeholder="Describe the tool you'd like to see..." required></textarea>
+          <button type="submit" class="suggestion-modal-submit">Submit Suggestion</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var overlay=document.getElementById('suggestionModal');
+      overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.classList.remove('active')});
+      document.addEventListener('keydown',function(e){if(e.key==='Escape')overlay.classList.remove('active')});
+    })();
+    </script>
+
     <!-- Content sections -->
     <div class="category-content">
 
@@ -246,21 +283,118 @@
         <div class="workflows">
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-search">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
+              <div class="mock-local-pack">
+                <div class="mock-lp-header">
+                  <div class="mock-lp-map-icon"></div>
+                  <span class="mock-lp-header-text">Places</span>
+                </div>
+                <div class="mock-lp-map">
+                  <div class="mock-lp-map-pin"></div>
+                  <div class="mock-lp-map-pin"></div>
+                  <div class="mock-lp-map-pin"></div>
+                  <div class="mock-lp-map-road"></div>
+                  <div class="mock-lp-map-road"></div>
+                </div>
+                <div class="mock-lp-listings">
+                  <div class="mock-lp-listing">
+                    <span class="mock-lp-rank">A</span>
+                    <div class="mock-lp-info">
+                      <div class="mock-lp-name">Joe's Plumbing</div>
+                      <div class="mock-lp-stars">
+                        <span class="mock-lp-star">&#9733;</span><span class="mock-lp-star">&#9733;</span><span class="mock-lp-star">&#9733;</span><span class="mock-lp-star">&#9733;</span><span class="mock-lp-star">&#9733;</span>
+                        <span class="mock-lp-rating">(127)</span>
+                      </div>
+                      <div class="mock-lp-meta">Plumber &middot; 0.3 mi<span class="mock-lp-open">Open</span></div>
+                    </div>
+                  </div>
+                  <div class="mock-lp-listing">
+                    <span class="mock-lp-rank">B</span>
+                    <div class="mock-lp-info">
+                      <div class="mock-lp-name">FastFix Plumbing</div>
+                      <div class="mock-lp-stars">
+                        <span class="mock-lp-star">&#9733;</span><span class="mock-lp-star">&#9733;</span><span class="mock-lp-star">&#9733;</span><span class="mock-lp-star">&#9733;</span><span class="mock-lp-star-empty">&#9733;</span>
+                        <span class="mock-lp-rating">(84)</span>
+                      </div>
+                      <div class="mock-lp-meta">Plumber &middot; 1.1 mi<span class="mock-lp-open">Open</span></div>
+                    </div>
+                  </div>
+                  <div class="mock-lp-listing">
+                    <span class="mock-lp-rank">C</span>
+                    <div class="mock-lp-info">
+                      <div class="mock-lp-name">City Plumbers</div>
+                      <div class="mock-lp-stars">
+                        <span class="mock-lp-star">&#9733;</span><span class="mock-lp-star">&#9733;</span><span class="mock-lp-star">&#9733;</span><span class="mock-lp-star-empty">&#9733;</span><span class="mock-lp-star-empty">&#9733;</span>
+                        <span class="mock-lp-rating">(31)</span>
+                      </div>
+                      <div class="mock-lp-meta">Plumber &middot; 2.4 mi<span class="mock-lp-closed">Closed</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <h3>Get Found in Local Search</h3>
             <p>Google's <a href="https://support.google.com/business/answer/7091" target="_blank" rel="noopener">local ranking factors</a> come down to relevance, distance, and prominence. You can't control distance — but you can control how well your GBP matches what people search for, and how much authority signals your business sends. That's what these tools handle.</p>
           </div>
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-reviews">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
+              <div class="mock-review-card">
+                <div class="mock-rv-header">
+                  <div class="mock-rv-avatar">SM</div>
+                  <div class="mock-rv-author">
+                    <span class="mock-rv-name">Sarah M.</span>
+                    <span class="mock-rv-date">2 days ago</span>
+                  </div>
+                </div>
+                <div class="mock-rv-stars">
+                  <span class="mock-rv-star">&#9733;</span><span class="mock-rv-star">&#9733;</span><span class="mock-rv-star">&#9733;</span><span class="mock-rv-star">&#9733;</span><span class="mock-rv-star">&#9733;</span>
+                </div>
+                <div class="mock-rv-quote">"Called at 7am with a burst pipe and they were here by 8:30. Fixed the issue fast and cleaned up after. Highly recommend."</div>
+                <div class="mock-rv-divider"></div>
+                <div class="mock-rv-response">
+                  <span class="mock-rv-response-label">Response from owner</span>
+                  <span class="mock-rv-response-owner">Joe's Plumbing</span>
+                  <div class="mock-rv-response-text">Thank you Sarah! We know emergencies are stressful and we're glad we could get there quickly. We appreciate you taking the time to share your experience.</div>
+                </div>
+              </div>
             </div>
             <h3>Build Trust Through Reviews</h3>
             <p>Nearly every consumer checks reviews before choosing a local business — it's become as automatic as Googling the address. The gap between you and your local competitors usually isn't quality of service — it's whether you systematically ask for reviews and respond to every one. That's a process problem, not a reputation problem. The <a data-tool="review-request-template-builder" href="https://review-request-template-builder.vercel.app/" target="_blank" rel="noopener">Review Request Template Builder</a> and <a data-tool="review-response-generator" href="https://review-response-generator-beta.vercel.app/" target="_blank" rel="noopener">Review Response Generator</a> turn that process into a repeatable habit.</p>
           </div>
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-consistency">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
+              <div class="mock-nap">
+                <div class="mock-nap-header">
+                  <span class="mock-nap-title">NAP Consistency Check</span>
+                  <span class="mock-nap-badge-ok">2 Match</span>
+                  <span class="mock-nap-badge-warn">1 Mismatch</span>
+                </div>
+                <div class="mock-nap-table">
+                  <div class="mock-nap-row-header">
+                    <span class="mock-nap-col-label"></span>
+                    <span class="mock-nap-col-label">Google</span>
+                    <span class="mock-nap-col-label">Yelp</span>
+                    <span class="mock-nap-col-label">Facebook</span>
+                  </div>
+                  <div class="mock-nap-row">
+                    <span class="mock-nap-field">Name</span>
+                    <div class="mock-nap-cell"><span class="mock-nap-check">&#10003;</span><span class="mock-nap-value">Joe's Plumbing</span></div>
+                    <div class="mock-nap-cell"><span class="mock-nap-check">&#10003;</span><span class="mock-nap-value">Joe's Plumbing</span></div>
+                    <div class="mock-nap-cell"><span class="mock-nap-check">&#10003;</span><span class="mock-nap-value">Joe's Plumbing</span></div>
+                  </div>
+                  <div class="mock-nap-row">
+                    <span class="mock-nap-field">Address</span>
+                    <div class="mock-nap-cell"><span class="mock-nap-check">&#10003;</span><span class="mock-nap-value">123 Main St</span></div>
+                    <div class="mock-nap-cell"><span class="mock-nap-check">&#10003;</span><span class="mock-nap-value">123 Main St</span></div>
+                    <div class="mock-nap-cell"><span class="mock-nap-x">&#10005;</span><span class="mock-nap-value mock-nap-mismatch">123 Main Street</span></div>
+                  </div>
+                  <div class="mock-nap-row">
+                    <span class="mock-nap-field">Phone</span>
+                    <div class="mock-nap-cell"><span class="mock-nap-check">&#10003;</span><span class="mock-nap-value">(555) 123-4567</span></div>
+                    <div class="mock-nap-cell"><span class="mock-nap-check">&#10003;</span><span class="mock-nap-value">(555) 123-4567</span></div>
+                    <div class="mock-nap-cell"><span class="mock-nap-check">&#10003;</span><span class="mock-nap-value">(555) 123-4567</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
             <h3>Stay Consistent Across the Web</h3>
             <p>Google cross-references your business name, address, and phone number across every directory it can find. We've seen businesses drop from the local 3-pack after something as small as a phone number change during a carrier switch. The <a data-tool="nap-consistency-checker" href="https://nap-consistency-checker.vercel.app/" target="_blank" rel="noopener">NAP Checker</a> catches these mismatches before Google does.</p>
@@ -392,9 +526,7 @@
           Get Started
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
         </a>
-      </div>
-
-      <div class="page-last-updated">Last updated: March 2, 2026</div>
+      </div>      <div class="page-last-updated">Last updated: March 2, 2026</div>
 
     </div>
   </main>

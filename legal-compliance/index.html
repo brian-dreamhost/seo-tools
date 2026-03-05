@@ -182,6 +182,43 @@
       </div>
     </div>
 
+
+    <div class="suggestion-section">
+      <h2>What Should We Build Next?</h2>
+      <p>We love building these tools, and helping you grow your business is what drives everything we do. If there's something that would make your legal and compliance workflow easier, tell us&nbsp;&mdash; we're&nbsp;listening.</p>
+      <button class="suggestion-btn" onclick="document.getElementById('suggestionModal').classList.add('active')" aria-haspopup="dialog">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+        Suggest a Tool
+      </button>
+    </div>
+
+    <div class="suggestion-overlay" id="suggestionModal" role="dialog" aria-modal="true" aria-label="Suggest a tool">
+      <div class="suggestion-modal">
+        <button class="suggestion-modal-close" onclick="document.getElementById('suggestionModal').classList.remove('active')" aria-label="Close">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+        </button>
+        <h3>Suggest a Tool</h3>
+        <p class="suggestion-modal-sub">Every idea gets read by a real person on our&nbsp;team.</p>
+        <form action="mailto:brian.glassman@dreamhost.com?subject=New DreamHost Free Tool Request" method="POST" enctype="text/plain">
+          <label for="suggestName">First Name</label>
+          <input type="text" id="suggestName" name="name" placeholder="Your first name" required>
+          <label for="suggestEmail">Email</label>
+          <input type="email" id="suggestEmail" name="email" placeholder="you@example.com" required>
+          <label for="suggestIdea">Your Idea</label>
+          <textarea id="suggestIdea" name="idea" placeholder="Describe the tool you'd like to see..." required></textarea>
+          <button type="submit" class="suggestion-modal-submit">Submit Suggestion</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var overlay=document.getElementById('suggestionModal');
+      overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.classList.remove('active')});
+      document.addEventListener('keydown',function(e){if(e.key==='Escape')overlay.classList.remove('active')});
+    })();
+    </script>
+
     <!-- Content sections -->
     <div class="category-content">
 
@@ -248,21 +285,101 @@
         <div class="workflows">
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-search">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+              <div class="mock-checklist">
+                <div class="mock-checklist-header">Legal Pages Status</div>
+                <div class="mock-checklist-items">
+                  <div class="mock-checklist-row">
+                    <span class="mock-check-done">&#10003;</span>
+                    <span class="mock-checklist-label">Privacy Policy</span>
+                    <span class="mock-checklist-badge mock-badge-done">Complete</span>
+                  </div>
+                  <div class="mock-checklist-row">
+                    <span class="mock-check-done">&#10003;</span>
+                    <span class="mock-checklist-label">Terms of Service</span>
+                    <span class="mock-checklist-badge mock-badge-done">Complete</span>
+                  </div>
+                  <div class="mock-checklist-row">
+                    <span class="mock-check-done">&#10003;</span>
+                    <span class="mock-checklist-label">Cookie Policy</span>
+                    <span class="mock-checklist-badge mock-badge-done">Complete</span>
+                  </div>
+                  <div class="mock-checklist-row">
+                    <span class="mock-check-pending">&#9675;</span>
+                    <span class="mock-checklist-label">Disclaimer</span>
+                    <span class="mock-checklist-badge mock-badge-pending">Pending</span>
+                  </div>
+                  <div class="mock-checklist-row">
+                    <span class="mock-check-pending">&#9675;</span>
+                    <span class="mock-checklist-label">Return Policy</span>
+                    <span class="mock-checklist-badge mock-badge-pending">Pending</span>
+                  </div>
+                </div>
+                <div class="mock-checklist-progress">
+                  <div class="mock-checklist-progress-bar">
+                    <div class="mock-checklist-progress-fill"></div>
+                  </div>
+                  <span class="mock-checklist-progress-label">3 of 5 complete</span>
+                </div>
+              </div>
             </div>
             <h3>Get Your Legal Pages in Place</h3>
             <p>Every website needs at minimum a privacy policy and terms of service. E-commerce sites add a return policy. If you run ads or affiliate links, you need disclaimers. The key is creating each page based on your actual business practices — not a generic template copied from another site. A legal page audit can identify exactly which pages you're missing and which need updating.</p>
           </div>
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-reviews">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" /></svg>
+              <div class="mock-scorecard">
+                <div class="mock-scorecard-header">
+                  <span class="mock-scorecard-title">WCAG 2.2 AA</span>
+                  <span class="mock-scorecard-subtitle">Compliance Audit</span>
+                </div>
+                <div class="mock-scorecard-items">
+                  <div class="mock-scorecard-row">
+                    <span class="mock-scorecard-label">Color Contrast</span>
+                    <span class="mock-scorecard-value">4.8 : 1</span>
+                    <span class="mock-scorecard-status mock-status-pass">PASS</span>
+                  </div>
+                  <div class="mock-scorecard-row">
+                    <span class="mock-scorecard-label">Alt Text Coverage</span>
+                    <span class="mock-scorecard-value">12 / 15</span>
+                    <span class="mock-scorecard-status mock-status-warn">WARN</span>
+                  </div>
+                  <div class="mock-scorecard-row">
+                    <span class="mock-scorecard-label">Keyboard Nav</span>
+                    <span class="mock-scorecard-value">All clear</span>
+                    <span class="mock-scorecard-status mock-status-pass">PASS</span>
+                  </div>
+                </div>
+                <div class="mock-scorecard-footer">
+                  <span class="mock-scorecard-score">Score: 87%</span>
+                  <span class="mock-scorecard-note">3 images missing alt</span>
+                </div>
+              </div>
             </div>
             <h3>Make Your Site Accessible</h3>
             <p>Web accessibility isn't just good practice under the ADA and <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">WCAG 2.2</a> — it expands your audience to the 1.3 billion people worldwide living with disabilities (<a href="https://www.who.int/news-room/fact-sheets/detail/disability-and-health" target="_blank" rel="noopener">WHO</a>). Start with an accessibility audit to identify issues, then check your color contrast to fix the most common failure: text that doesn't meet the 4.5:1 ratio for normal text. Addressing these two areas covers the majority of accessibility complaints.</p>
           </div>
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-consistency">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
+              <div class="mock-privacymap">
+                <div class="mock-privacymap-header">Global Privacy Regulations</div>
+                <div class="mock-privacymap-regions">
+                  <div class="mock-privacymap-col">
+                    <span class="mock-region-badge mock-region-ca">PIPEDA</span>
+                    <span class="mock-region-name">Canada</span>
+                  </div>
+                  <div class="mock-privacymap-col">
+                    <span class="mock-region-badge mock-region-eu">GDPR</span>
+                    <span class="mock-region-name">European Union</span>
+                  </div>
+                  <div class="mock-privacymap-col">
+                    <span class="mock-region-badge mock-region-us">CCPA / CPRA</span>
+                    <span class="mock-region-name">California, US</span>
+                  </div>
+                </div>
+                <div class="mock-privacymap-footer">
+                  <span class="mock-privacymap-note">Your site may be subject to multiple regulations based on visitor location</span>
+                </div>
+              </div>
             </div>
             <h3>Stay Compliant With Privacy Laws</h3>
             <p>GDPR, CCPA/CPRA, PIPEDA, LGPD — the alphabet soup of privacy laws keeps growing. A compliance check that walks you through your data practices can identify specific gaps. A cookie policy paired with a proper consent banner covers the mechanism you need to handle cookies legally. Together, these address the two biggest areas where sites get fined: missing consent and incomplete disclosure.</p>
@@ -397,9 +514,7 @@
           Get Started
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
         </a>
-      </div>
-
-      <div class="page-last-updated">Last updated: March 5, 2026</div>
+      </div>      <div class="page-last-updated">Last updated: March 5, 2026</div>
 
     </div>
   </main>

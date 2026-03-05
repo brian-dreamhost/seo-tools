@@ -148,6 +148,43 @@
       </div>
     </div>
 
+
+    <div class="suggestion-section">
+      <h2>What Should We Build Next?</h2>
+      <p>We love building these tools, and helping you grow your business is what drives everything we do. If there's something that would make your analytics workflow easier, tell us&nbsp;&mdash; we're&nbsp;listening.</p>
+      <button class="suggestion-btn" onclick="document.getElementById('suggestionModal').classList.add('active')" aria-haspopup="dialog">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+        Suggest a Tool
+      </button>
+    </div>
+
+    <div class="suggestion-overlay" id="suggestionModal" role="dialog" aria-modal="true" aria-label="Suggest a tool">
+      <div class="suggestion-modal">
+        <button class="suggestion-modal-close" onclick="document.getElementById('suggestionModal').classList.remove('active')" aria-label="Close">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+        </button>
+        <h3>Suggest a Tool</h3>
+        <p class="suggestion-modal-sub">Every idea gets read by a real person on our&nbsp;team.</p>
+        <form action="mailto:brian.glassman@dreamhost.com?subject=New DreamHost Free Tool Request" method="POST" enctype="text/plain">
+          <label for="suggestName">First Name</label>
+          <input type="text" id="suggestName" name="name" placeholder="Your first name" required>
+          <label for="suggestEmail">Email</label>
+          <input type="email" id="suggestEmail" name="email" placeholder="you@example.com" required>
+          <label for="suggestIdea">Your Idea</label>
+          <textarea id="suggestIdea" name="idea" placeholder="Describe the tool you'd like to see..." required></textarea>
+          <button type="submit" class="suggestion-modal-submit">Submit Suggestion</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var overlay=document.getElementById('suggestionModal');
+      overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.classList.remove('active')});
+      document.addEventListener('keydown',function(e){if(e.key==='Escape')overlay.classList.remove('active')});
+    })();
+    </script>
+
     <!-- Content sections -->
     <div class="category-content">
 
@@ -214,21 +251,91 @@
         <div class="workflows">
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-search">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+              <div class="mock-roi">
+                <div class="mock-roi-header">
+                  <span class="mock-roi-dot mock-roi-dot--red"></span>
+                  <span class="mock-roi-dot mock-roi-dot--yellow"></span>
+                  <span class="mock-roi-dot mock-roi-dot--green"></span>
+                  <span class="mock-roi-title">Campaign Results</span>
+                </div>
+                <div class="mock-roi-body">
+                  <div class="mock-roi-label">Campaign ROI</div>
+                  <div class="mock-roi-value">340%</div>
+                  <div class="mock-roi-divider"></div>
+                  <div class="mock-roi-breakdown">
+                    <div class="mock-roi-stat">
+                      <span class="mock-roi-stat-label">Revenue</span>
+                      <span class="mock-roi-stat-value">$8,500</span>
+                    </div>
+                    <div class="mock-roi-stat">
+                      <span class="mock-roi-stat-label">Cost</span>
+                      <span class="mock-roi-stat-value mock-roi-stat-value--cost">$2,500</span>
+                    </div>
+                    <div class="mock-roi-stat">
+                      <span class="mock-roi-stat-label">Profit</span>
+                      <span class="mock-roi-stat-value mock-roi-stat-value--profit">$6,000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <h3>Know Your ROI</h3>
             <p>Most small businesses can't answer the question "for every dollar you spend on marketing, how many dollars come back?" The Marketing ROI Calculator will take your campaign spend, revenue, and costs and return the exact ROI percentage, ROAS, and break-even point. Marketing teams that can demonstrate measurable ROI consistently secure larger budgets — you can't defend what you can't measure.</p>
           </div>
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-reviews">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" /></svg>
+              <div class="mock-ab">
+                <div class="mock-ab-header">
+                  <span class="mock-roi-dot mock-roi-dot--red"></span>
+                  <span class="mock-roi-dot mock-roi-dot--yellow"></span>
+                  <span class="mock-roi-dot mock-roi-dot--green"></span>
+                  <span class="mock-roi-title">A/B Test Results</span>
+                </div>
+                <div class="mock-ab-body">
+                  <div class="mock-ab-variants">
+                    <div class="mock-ab-variant">
+                      <div class="mock-ab-variant-label">Variant A</div>
+                      <div class="mock-ab-bar-track">
+                        <div class="mock-ab-bar mock-ab-bar--a" style="width: 55%"></div>
+                      </div>
+                      <div class="mock-ab-rate">3.2% conversion</div>
+                    </div>
+                    <div class="mock-ab-variant">
+                      <div class="mock-ab-variant-label">Variant B <span class="mock-ab-winner">Winner +47%</span></div>
+                      <div class="mock-ab-bar-track">
+                        <div class="mock-ab-bar mock-ab-bar--b" style="width: 80%"></div>
+                      </div>
+                      <div class="mock-ab-rate">4.7% conversion</div>
+                    </div>
+                  </div>
+                  <div class="mock-ab-confidence">Confidence: 96%</div>
+                </div>
+              </div>
             </div>
             <h3>Test Before You Scale</h3>
             <p>Launching an expensive A/B test without knowing the required sample size is like flipping a coin and calling it science. The A/B Test Sample Size Calculator will tell you exactly how many visitors you need and how long to run your test before results are statistically valid. Underpowered tests are the most common reason experiments fail — not because the change didn't work, but because the test ended too early and the sample was too small to detect a real difference.</p>
           </div>
           <div class="workflow-item">
             <div class="workflow-illustration workflow-illustration-consistency">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" /></svg>
+              <div class="mock-utm">
+                <div class="mock-utm-header">
+                  <span class="mock-roi-dot mock-roi-dot--red"></span>
+                  <span class="mock-roi-dot mock-roi-dot--yellow"></span>
+                  <span class="mock-roi-dot mock-roi-dot--green"></span>
+                  <span class="mock-roi-title">UTM Builder Output</span>
+                </div>
+                <div class="mock-utm-body">
+                  <div class="mock-utm-label">Generated URL</div>
+                  <div class="mock-utm-url">
+                    <span class="mock-utm-base">https://example.com</span><span class="mock-utm-param">?utm_source=</span><span class="mock-utm-val">newsletter</span><span class="mock-utm-param">&amp;utm_medium=</span><span class="mock-utm-val">email</span><span class="mock-utm-param">&amp;utm_campaign=</span><span class="mock-utm-val">spring_sale</span>
+                  </div>
+                  <div class="mock-utm-legend">
+                    <span class="mock-utm-legend-item"><span class="mock-utm-legend-swatch mock-utm-legend-swatch--base"></span>Domain</span>
+                    <span class="mock-utm-legend-item"><span class="mock-utm-legend-swatch mock-utm-legend-swatch--param"></span>Parameter</span>
+                    <span class="mock-utm-legend-item"><span class="mock-utm-legend-swatch mock-utm-legend-swatch--val"></span>Value</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <h3>Track Every Click</h3>
             <p>If your analytics dashboard shows a spike in traffic, can you tell whether it came from Tuesday's email, the LinkedIn post, or that Instagram Story? Without UTM tags, the answer is no. The UTM Link Builder will create properly tagged URLs with consistent naming conventions so every click is attributed to the right source. <a href="https://support.google.com/analytics/answer/1033863" target="_blank" rel="noopener">Google's own documentation</a> emphasizes that consistent UTM tagging is the foundation of accurate campaign reporting.</p>
@@ -359,9 +466,7 @@
           Get Started
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
         </a>
-      </div>
-
-      <div class="page-last-updated">Last updated: March 5, 2026</div>
+      </div>      <div class="page-last-updated">Last updated: March 5, 2026</div>
 
     </div>
   </main>
