@@ -464,6 +464,10 @@ a.tool-card:hover .tool-card-title {
   color: var(--color-galactic);
 }
 
+.tool-card .tile-status {
+  display: none;
+}
+
 .tool-card-coming .tile-status {
   opacity: 0.7;
 }
