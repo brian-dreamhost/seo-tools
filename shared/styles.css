@@ -4018,7 +4018,7 @@ a.tool-card:hover .tool-card-title {
   margin-bottom: 0.375rem;
 }
 
-.suggestion-modal input,
+.suggestion-modal input:not([type="checkbox"]),
 .suggestion-modal textarea {
   width: 100%;
   padding: 0.625rem 0.75rem;
@@ -4032,12 +4032,12 @@ a.tool-card:hover .tool-card-title {
   transition: border-color 0.2s;
 }
 
-.suggestion-modal input::placeholder,
+.suggestion-modal input:not([type="checkbox"])::placeholder,
 .suggestion-modal textarea::placeholder {
   color: var(--color-galactic);
 }
 
-.suggestion-modal input:focus,
+.suggestion-modal input:not([type="checkbox"]):focus,
 .suggestion-modal textarea:focus {
   outline: none;
   border-color: var(--color-azure);
