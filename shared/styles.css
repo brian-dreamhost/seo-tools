@@ -423,6 +423,16 @@ footer {
   text-decoration: none;
   color: inherit;
   transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 0% 0%, rgba(0, 115, 236, 0.18) 0%, transparent 75%);
+  pointer-events: none;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
