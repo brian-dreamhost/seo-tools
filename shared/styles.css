@@ -4010,7 +4010,7 @@ a.tool-card:hover .tool-card-title {
   margin-bottom: 1.5rem;
 }
 
-.suggestion-modal label {
+.suggestion-modal label:not(.suggestion-checkbox) {
   display: block;
   font-size: 0.8125rem;
   font-weight: 600;
@@ -4066,11 +4066,14 @@ a.tool-card:hover .tool-card-title {
   width: 0.875rem;
   height: 0.875rem;
   min-width: 0.875rem;
+  flex-shrink: 0;
   border: 1px solid rgba(67, 79, 88, 0.5);
   border-radius: 0.1875rem;
   background: var(--color-abyss);
   cursor: pointer;
   position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 .suggestion-checkbox input[type="checkbox"]:checked {
