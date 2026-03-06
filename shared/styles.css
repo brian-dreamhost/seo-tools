@@ -634,10 +634,6 @@ a.tool-card:hover .tool-card-title {
   flex-shrink: 0;
   position: sticky;
   top: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-self: stretch;
-  min-height: calc(100vh - 4rem);
 }
 
 .sidebar-nav {
@@ -646,27 +642,6 @@ a.tool-card:hover .tool-card-title {
   gap: 0.125rem;
 }
 
-.sidebar-logo {
-  margin-top: auto;
-  padding: 1.5rem 0.75rem 0.5rem;
-  border-top: 1px solid rgba(67, 79, 88, 0.2);
-}
-
-.sidebar-logo a {
-  display: inline-block;
-  opacity: 0.4;
-  transition: opacity 0.2s ease;
-}
-
-.sidebar-logo a:hover {
-  opacity: 0.7;
-}
-
-.sidebar-logo img {
-  display: block;
-  height: 22px;
-  width: auto;
-}
 
 .sidebar-item {
   display: flex;
