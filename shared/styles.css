@@ -3653,6 +3653,10 @@ a.tool-card:hover .tool-card-title {
 }
 
 /* --- Section 4: FAQ — single-column full-width accordions --- */
+.content-section:has(.faq-list) > .section-heading {
+  text-align: center;
+}
+
 .faq-list {
   display: flex;
   flex-direction: column;
