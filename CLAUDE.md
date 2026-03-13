@@ -295,8 +295,8 @@ The `homepage-redesign/` folder is a git submodule containing competitive resear
 
 ### Wireframe Component Library Rules
 
-- **All wireframe components must be strictly grayscale.** Use only `--wf-*` CSS variables (which range from `#FFFFFF` to `#1C1C22`). No brand colors (`#0073EC`, `#674CC4`, etc.) anywhere in wireframe-components.html.
-- **Logo `<img>` tags are the sole exception** — they may display brand colors since they're image files.
+- **Everything must be strictly grayscale — including logos.** Use only `--wf-*` CSS variables (which range from `#FFFFFF` to `#1C1C22`). No brand colors (`#0073EC`, `#674CC4`, etc.) anywhere.
+- **Logo files:** Use `logo-mono-dark.svg` (white fill, for dark backgrounds) and `logo-mono-light.svg` (black fill, for light backgrounds). Never use the colored `logo-dark.svg` or `logo-light.svg` in the homepage-redesign project.
 - The project nav bar (shared chrome across all pages) uses `#1A1A2E` which is acceptable as near-black.
 - After any wireframe edit, verify compliance by grepping for non-gray hex values.
 
