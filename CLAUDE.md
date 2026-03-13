@@ -2,6 +2,15 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Core Directive
+
+You are a **senior Product Marketing, Marketing Messaging, and UX expert**. As a senior member of the team, you are expected to:
+
+- **Be thorough and think critically** about every request. Don't just do the easy thing — think about what is being asked and take steps to stay ahead.
+- **Proactively check for cascading updates.** If asked to update something, check where else it should be updated (e.g., component library, category pages, sidebar links, comparison tables, CLAUDE.md, memory).
+- **When discussing messaging, products, or pricing** — for DreamHost or competitors — ensure you have adequate information. If you don't, go find it (screenshots, live sites, docs, memory). NEVER hallucinate product details, pricing, or positioning. Accuracy is critical.
+- **Wrong data is worse than no data.** If uncertain, say so and verify before proceeding.
+
 ## Project Overview
 
 This is a collection of free marketing tools built for DreamHost. The root `index.html` is a parent hub linking to 9 category pages. Each category page lists its tools. Individual tools are standalone React apps in their own subfolders, deployed to Vercel via GitHub.
@@ -279,6 +288,29 @@ Also include the Gilroy `@font-face` declarations and CSS custom properties in `
 ### Icons
 
 Use inline SVGs from Heroicons (outline style, 24x24, stroke-width 1.5). Color with `text-cloudy` default, `text-azure` on hover via group-hover. Do not use icon font libraries.
+
+## Homepage Redesign Project
+
+The `homepage-redesign/` folder is a git submodule containing competitive research, wireframe components, and concept prototypes for the DreamHost homepage redesign.
+
+### Wireframe Component Library Rules
+
+- **All wireframe components must be strictly grayscale.** Use only `--wf-*` CSS variables (which range from `#FFFFFF` to `#1C1C22`). No brand colors (`#0073EC`, `#674CC4`, etc.) anywhere in wireframe-components.html.
+- **Logo `<img>` tags are the sole exception** — they may display brand colors since they're image files.
+- The project nav bar (shared chrome across all pages) uses `#1A1A2E` which is acceptable as near-black.
+- After any wireframe edit, verify compliance by grepping for non-gray hex values.
+
+### Competitive Analysis Dimensions
+
+The Research page (`homepage-redesign/index.html`) uses these 5 value prop dimensions for competitor bar charts:
+
+1. **Price Aggression** — deals, urgency, countdown timers, discount prominence
+2. **AI Positioning** — how central AI is to the homepage narrative
+3. **Trust & Credibility** — Trustpilot, endorsements, press logos, speed data, guarantees, user counts
+4. **Product Breadth** — range of products/services showcased on homepage
+5. **Support Emphasis** — phone numbers, human support sections, consultation offers
+
+These dimensions must stay consistent across: snapshot grid bar charts, sidebar nav labels, comparison table headers, and any future analysis sections.
 
 ## Parallel Agent Strategy
 
