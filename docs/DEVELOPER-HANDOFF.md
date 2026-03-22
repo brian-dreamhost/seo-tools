@@ -21,8 +21,7 @@ Static pages (this repo)          Standalone React apps (separate repos)
 │ analytics/          │                    │
 │ design/             │                    ▼
 │ local-business/     │           Each deploys independently
-│ legal-compliance/   │           to *.vercel.app
-│ advertising/        │
+│ advertising/        │           to *.vercel.app
 └─────────────────────┘
          │
     shared/styles.css (all static pages)

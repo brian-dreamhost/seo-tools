@@ -41,7 +41,7 @@ function getHtmlFiles(dir) {
   // Category directories (one level deep)
   const categoryDirs = [
     'seo', 'social-media', 'copywriting', 'email-marketing',
-    'analytics', 'design', 'local-business', 'legal-compliance', 'advertising'
+    'analytics', 'design', 'local-business', 'advertising'
   ];
 
   for (const subdir of categoryDirs) {

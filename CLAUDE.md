@@ -36,8 +36,6 @@ root/
 │   └── index.html              ← Design & Branding Tools category (5 tools)
 ├── local-business/
 │   └── index.html              ← Local Business Tools category (9 tools)
-├── legal-compliance/
-│   └── index.html              ← Legal & Compliance Tools category (9 tools)
 ├── advertising/
 │   └── index.html              ← Advertising Tools category (5 tools)
 ├── schema-markup-generator/    ← Standalone React app (own git repo)
@@ -115,20 +113,6 @@ All static HTML pages (hub + category pages) use `shared/styles.css` via relativ
 | `nap-consistency-checker` | NAP comparison workbook with diff algorithm | https://nap-consistency-checker.vercel.app/ |
 | `local-competitor-comparison` | Competitive analysis wizard with radar charts | https://local-competitor-comparison.vercel.app/ |
 
-**Legal & Compliance Tools:**
-
-| Folder | Description | Vercel URL |
-|---|---|---|
-| `privacy-policy-generator` | 6-step wizard, 14 conditional policy sections, 3 export formats | https://privacy-policy-generator-five.vercel.app/ |
-| `terms-of-service-generator` | 7-step wizard, 15 conditional sections, business-type-specific clauses | https://terms-of-service-generator-snowy.vercel.app/ |
-| `cookie-policy-banner-generator` | 5-step wizard, policy + working HTML/CSS/JS consent banner code | https://cookie-policy-banner-generator.vercel.app/ |
-| `disclaimer-generator` | 3-step wizard, 11 disclaimer types, industry-based defaults | https://disclaimer-generator-nu.vercel.app/ |
-| `return-refund-policy-generator` | 4-step wizard, 5 business types, 12 policy sections | https://return-refund-policy-generator.vercel.app/ |
-| `gdpr-ccpa-compliance-checker` | 40-item checklist across 6 sections, regulation applicability quiz | https://gdpr-ccpa-compliance-checker.vercel.app/ |
-| `website-legal-page-audit` | 10 legal page types, conditional requirements, action plan | https://website-legal-page-audit.vercel.app/ |
-| `website-accessibility-checker` | 40-item WCAG 2.2 AA checklist organized by POUR principles | https://website-accessibility-checker-beta.vercel.app/ |
-| `color-contrast-checker` | WCAG ratio calculator, AA/AAA badges, color blindness simulation | https://color-contrast-checker-ruby-sigma.vercel.app/ |
-
 ### Category Tool Lists
 
 **SEO Tools** (9 tools — 2 live):
@@ -151,9 +135,6 @@ Color Palette Generator, Contrast Checker (WCAG), Favicon Generator, Font Pairin
 
 **Local Business Tools** (9 tools — all live):
 Google Business Profile Audit, Review Response Generator, Review Request Template Builder, Local Business Schema Generator, Local SEO Keyword Generator, Local Directory Listing Manager, Service Area Map Planner, NAP Consistency Checker, Local Competitor Comparison
-
-**Legal & Compliance Tools** (9 tools — all live):
-Privacy Policy Generator, Terms of Service Generator, Cookie Policy & Banner Generator, Website Accessibility Checker, GDPR/CCPA Compliance Checker, Disclaimer Generator, Return & Refund Policy Generator, Website Legal Page Audit, Color Contrast Checker
 
 **Advertising Tools** (5 tools):
 Google Ads Preview Tool, ROAS Calculator, Facebook Ad Copy Generator, Ad Size Reference Guide, Landing Page Checklist Auditor
